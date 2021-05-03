@@ -30,17 +30,15 @@ This is some text written in markdown. It can include [links](https://aatishb.co
 You can embed a p5 interactive with sliders.
 </md>
 
-<!-- variables and sliders are defined at the bottom of the page -->
-<animation
-:variables="sketch1.variables"
-:sliders="sketch1.sliders"
-:code="`
+<!-- sketch variables defined at the bottom of the page -->
+
+Common Ratio: {{sketch1.ratio}} <input type="range" min="0.75" max="0.84" step=".01" v-model="sketch1.ratio"></input>
+
+<p5 :vars="sketch1">
 p.setup = function() {
   p.createCanvas(600, 400);
   p.textAlign(p.CENTER, p.CENTER);
 };
-
-
 
 p.draw = function() {
   if (parent.isVisible) { // only update draw loop when canvas is visible
@@ -49,16 +47,16 @@ p.draw = function() {
     p.stroke('gray');
     p.strokeWeight(1);
     let base = p.height * 0.8;
-    // variables.horizon = p.mouseY;
-    p.line(0,variables.horizon,p.width,variables.horizon); //draw horizon line
+    // vars.horizon = p.mouseY;
+    p.line(0,vars.horizon,p.width,vars.horizon); //draw horizon line
     p.line(0,base,p.width,base); // draw base line
 
     let num;
     let y;
-    if (variables.state === 0) { // the real (harmonic) sequence
+    if (vars.state === 0) { // the real (harmonic) sequence
       num = 0;
       while (num < 50) {
-        y = base + (variables.horizon - base)*(1 - 6*p.pow(num+6,-1));
+        y = base + (vars.horizon - base)*(1 - 6*p.pow(num+6,-1));
         p.stroke(150);
         p.line(0, y, p.width, y);
         num = num +1;
@@ -67,15 +65,15 @@ p.draw = function() {
     else {   // and here is the fake (geometric) sequence
       num = 0;
       while (num < 20) {
-        let partial_sum = (0.75)*(1 - p.pow(variables.ratio,num+1))/(1-variables.ratio);
-        y = base + (variables.horizon - base)*(partial_sum/5.25);
+        let partial_sum = (0.75)*(1 - p.pow(vars.ratio,num+1))/(1-vars.ratio);
+        y = base + (vars.horizon - base)*(partial_sum/5.25);
         p.line(0, y, p.width, y);
         num = num +1;
       }
     }
 
-    variables.vp = p.mouseX;
-    let vanishing_point = p.createVector(variables.vp,variables.horizon);
+    vars.vp = p.mouseX;
+    let vanishing_point = p.createVector(vars.vp,vars.horizon);
     num = 0;
     while (num < 50) {
       p.drawSegment(vanishing_point, p.createVector((.425 - (.15 * num)) * p.width,base), 150);
@@ -89,23 +87,20 @@ p.draw = function() {
 
     p.noStroke();
     p.fill('green');
-    if (variables.state == 0) {
+    if (vars.state == 0) {
       p.text('Harmonic Progression', p.width/2, p.height - 30);
     } else {
       p.text('Geometric Progression', p.width/2, p.height - 30);
     }
-
-
-
   }
 };
 
 
 p.mouseClicked = function() {
-  if (variables.state === 0) {
-    variables.state = 1;
+  if (vars.state === 0) {
+    vars.state = 1;
   } else {
-    variables.state = 0;
+    vars.state = 0;
   }
 };
 
@@ -119,8 +114,7 @@ p.drawSegment = function(base, vec, myColor) {
   p.line(base.x, base.y, vec.x, vec.y);
   p.pop();
 }
-`">
-</animation>
+</p5>
 
 <md>
 Here's another p5 interactive. Try moving your mouse over it.
@@ -128,9 +122,9 @@ Here's another p5 interactive. Try moving your mouse over it.
 
 <!-- sketch variables are defined at the bottom of the page -->
 
-Red: {{sketch2.r}} <input type="range" min="0" max="255" step="1" v-model="sketch2.r"></input> 
-Green: {{sketch2.g}} <input type="range" min="0" max="255" step="1" v-model="sketch2.g"></input> 
-Blue: {{sketch2.b}} <input type="range" min="0" max="255" step="1" v-model="sketch2.b"></input> 
+Red: {{sketch2.r}} <input type="range" min="0" max="255" step="1" v-model="sketch2.r"></input>
+Green: {{sketch2.g}} <input type="range" min="0" max="255" step="1" v-model="sketch2.g"></input>
+Blue: {{sketch2.b}} <input type="range" min="0" max="255" step="1" v-model="sketch2.b"></input>
 
 <p5 :vars="sketch2">
   p.setup = function() {
@@ -158,18 +152,15 @@ Try changing the code or adding more interactives! (Remember to write the p5 cod
 let data = {
 
   sketch1: {
-    variables: {x: 0.5, y: 0.5, r: 50, horizon: 50, state: 1, ratio: 0.75, vp: 300},
-    sliders: {
-      // horizon: ['horizon position', 0, 200, 1],
-      // vp: ['vanishing point position', 0, 600, 1],
-      // state: ['state', 0, 1, 1],
-      ratio: ['common ratio', .75 , .84, .01],
-    }
+    horizon: 50,
+    state: 1,
+    ratio: 0.75,
+    vp: 300
   },
 
   sketch2: {
-    r: 60, 
-    g: 20, 
+    r: 60,
+    g: 20,
     b: 90
   },
 
