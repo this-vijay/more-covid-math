@@ -30,17 +30,33 @@ This is some text written in markdown. It can include [links](https://aatishb.co
 You can embed a p5 interactive with sliders.
 </md>
 
-<!-- variables and sliders are defined at the bottom of the page -->
-<animation
-:variables="sketch1.variables"
-:sliders="sketch1.sliders"
-:code="`
+<!-- sketch variables defined at the bottom of the page -->
+
+
+
+<p>Which type of progession should we use?</p>
+  <label>
+    <input type="radio" value="harmonic" v-model="sketch1.progression_type" />
+    harmonic
+  </label>
+  <label>
+    <input type="radio" value="geometric" v-model="sketch1.progression_type" />
+    geometric
+  </label>
+  <p>Horizontal lines spaced in a <em>{{sketch1.progression_type}}</em> progression.</p>
+
+
+
+Common Ratio: {{sketch1.ratio}} <input type="range" min="0.75" max="0.84" step=".01" v-model="sketch1.ratio"></input>
+Horizon Line: {{sketch1.horizon}} <input type="range" min="-100" max="400" step="1" v-model="sketch1.horizon"></input>
+
+
+
+<p5 :vars="sketch1">
 p.setup = function() {
   p.createCanvas(600, 400);
   p.textAlign(p.CENTER, p.CENTER);
 };
-
-
 
 p.draw = function() {
   if (parent.isVisible) { // only update draw loop when canvas is visible
@@ -49,65 +65,86 @@ p.draw = function() {
     p.stroke('gray');
     p.strokeWeight(1);
     let base = p.height * 0.8;
-    // variables.horizon = p.mouseY;
-    p.line(0,variables.horizon,p.width,variables.horizon); //draw horizon line
+    //vars.horizon = p.mouseY;
+    p.line(0,vars.horizon,p.width,vars.horizon); //draw horizon line
     p.line(0,base,p.width,base); // draw base line
 
-    let num;
-    let y;
-    if (variables.state === 0) { // the real (harmonic) sequence
-      num = 0;
-      while (num < 50) {
-        y = base + (variables.horizon - base)*(1 - 6*p.pow(num+6,-1));
+
+    let gridsize = 11;
+    let gridx = [];
+    let gridy = [];
+    for (let i = 0; i < gridsize+1; i++) {
+    gridx[i] = p.width * (i/gridsize);
+    }
+
+
+    if (vars.progression_type === 'harmonic') { // the real (harmonic) sequence
+      for (let num = 0; num < gridsize+1; num++) {
+        gridy[num] = base + (vars.horizon - base)*(1 - 6*p.pow(num+6,-1));
         p.stroke(150);
-        p.line(0, y, p.width, y);
-        num = num +1;
+        p.line(0, gridy[num], p.width, gridy[num]);
       }
     }
     else {   // and here is the fake (geometric) sequence
-      num = 0;
-      while (num < 20) {
-        let partial_sum = (0.75)*(1 - p.pow(variables.ratio,num+1))/(1-variables.ratio);
-        y = base + (variables.horizon - base)*(partial_sum/5.25);
-        p.line(0, y, p.width, y);
-        num = num +1;
+      for (let num = 0; num < gridsize+1; num++) {
+        let partial_sum = (0.75)*(1 - p.pow(vars.ratio,num))/(1-vars.ratio);
+        gridy[num] = base + (vars.horizon - base)*(partial_sum/5.25);
+        p.line(0, gridy[num], p.width, gridy[num]);
       }
     }
 
-    variables.vp = p.mouseX;
-    let vanishing_point = p.createVector(variables.vp,variables.horizon);
-    num = 0;
-    while (num < 50) {
-      p.drawSegment(vanishing_point, p.createVector((.425 - (.15 * num)) * p.width,base), 150);
-      p.drawSegment(vanishing_point, p.createVector((.575 + (.15 * num)) * p.width,base), 150);
-      num = num + 1;
+    vars.vp = p.mouseX;
+    let vanishing_point = p.createVector(vars.vp,vars.horizon,1);
+    for (let num = 0; num < gridsize+1; num++) {
+      p.drawSegment(vanishing_point, p.createVector(gridx[num],base), 150);
+      //p.drawSegment(vanishing_point, p.createVector((.425 - (.15 * num)) * p.width,base,1), 150);
+      //p.drawSegment(vanishing_point, p.createVector((.575 + (.15 * num)) * p.width,base),1), 150);
     }
 
     p.fill('black');
     p.stroke('black');
-    p.rect(0, 0, p.width, y);
+    p.rect(0, 0, p.width, gridy[gridsize]);
 
-    p.noStroke();
-    p.fill('green');
-    if (variables.state == 0) {
-      p.text('Harmonic Progression', p.width/2, p.height - 30);
-    } else {
-      p.text('Geometric Progression', p.width/2, p.height - 30);
+    p.fill('gray');
+    p.stroke('gray');
+    let grid = [];
+    for (let i = 0; i < gridsize + 1; i++) {
+      grid[i] = [];
+      let base_corner = p.createVector(gridx[i],base,1);
+      let vert = p.join(vanishing_point,base_corner);
+      for (let j = 0; j < gridsize + 1; j++) {
+        let horz = p.join(p.createVector(0,gridy[j],1),p.createVector(p.width,gridy[j],1));
+        grid[i][j] = p.meet(vert, horz);
+      }
     }
 
 
 
+
+    for (let i = 0; i < gridsize; i++) {
+      for (let j = 0; j < gridsize; j++) {
+        if ((i+j) % 2 == 0) {
+          let sw = grid[i][j];
+          let se = grid[i+1][j];
+          let ne = grid[i+1][j+1];
+          let nw = grid[i][j+1];
+          p.quad(sw.x,sw.y,se.x,se.y,ne.x,ne.y,nw.x,nw.y);
+        }
+      }
+    }
+
+
+
+    p.noStroke();
+    p.fill('gray');
+    if (vars.progression_type == 'harmonic') {
+      p.text('harmonic progression', p.width/2, p.height - 30);
+    } else {
+      p.text('geometric progression', p.width/2, p.height - 30);
+    }
   }
 };
 
-
-p.mouseClicked = function() {
-  if (variables.state === 0) {
-    variables.state = 1;
-  } else {
-    variables.state = 0;
-  }
-};
 
 
 // draw an arrow for a vector at a given base position
@@ -119,32 +156,44 @@ p.drawSegment = function(base, vec, myColor) {
   p.line(base.x, base.y, vec.x, vec.y);
   p.pop();
 }
-`">
-</animation>
+
+
+// joins two points and returns a line; uses p5.Vector to represent points as well as lines in affine plane z=1
+p.join = function(point1, point2) {
+  return p5.Vector.cross(point1,point2);
+}
+
+// intersects ('meets') two lines and returns a point; uses p5.Vector to represent points as well as lines in affine plane z=1
+p.meet = function(line1, line2) {
+  let meet = p5.Vector.cross(line1,line2);
+  return meet.div(meet.z);
+}
+</p5>
 
 <md>
 Here's another p5 interactive. Try moving your mouse over it.
 </md>
 
-<!-- variables and sliders are defined at the bottom of the page -->
-<animation
-:variables="sketch2.variables"
-:sliders="sketch2.sliders"
-:code="`
-p.setup = function() {
-  p.createCanvas(600, 400);
-  p.noStroke();
-};
+<!-- sketch variables are defined at the bottom of the page -->
 
-p.draw = function() {
-  if (parent.isVisible) { // only update draw loop when canvas is visible
-    p.background(variables.r, variables.g, variables.b);
-    p.fill(255 - variables.r, 255 - variables.g, 255 - variables.b);
-    p.circle(p.mouseX, p.mouseY, 100);
-  }
-};
-`">
-</animation>
+Red: {{sketch2.r}} <input type="range" min="0" max="255" step="1" v-model="sketch2.r"></input>
+Green: {{sketch2.g}} <input type="range" min="0" max="255" step="1" v-model="sketch2.g"></input>
+Blue: {{sketch2.b}} <input type="range" min="0" max="255" step="1" v-model="sketch2.b"></input>
+
+<p5 :vars="sketch2">
+  p.setup = function() {
+    p.createCanvas(600, 400);
+  };
+
+  p.draw = function() {
+    if (parent.isVisible) { // only update draw loop when canvas is visible
+      p.background(vars.r, vars.g, vars.b);
+      p.fill(255 - vars.r, 255 - vars.g, 255 - vars.b);
+      p.circle(p.mouseX, p.mouseY, 100);
+    }
+  };
+</p5>
+
 
 <md>
 Try changing the code or adding more interactives! (Remember to write the p5 code in [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode).)
@@ -154,25 +203,19 @@ Try changing the code or adding more interactives! (Remember to write the p5 cod
 
 <!-- here we define data accessible throughout the page -->
 <script>
-pageData = {
+let data = {
 
   sketch1: {
-    variables: {x: 0.5, y: 0.5, r: 50, horizon: 50, state: 1, ratio: 0.75, vp: 300},
-    sliders: {
-      // horizon: ['horizon position', 0, 200, 1],
-      // vp: ['vanishing point position', 0, 600, 1],
-      // state: ['state', 0, 1, 1],
-      ratio: ['common ratio', .75 , .84, .01],
-    }
+    horizon: 50,
+    progression_type: 'harmonic',
+    ratio: 0.75,
+    vp: 300
   },
 
   sketch2: {
-    variables: {r: 60, g: 20, b: 90},
-    sliders: {
-      r: ['Red', 0, 255, 1],
-      g: ['Green', 0, 255, 1],
-      b: ['Blue', 0, 255, 1],
-    }
+    r: 60,
+    g: 20,
+    b: 90
   },
 
 };
