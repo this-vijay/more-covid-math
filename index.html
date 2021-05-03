@@ -124,12 +124,16 @@ p.draw = function() {
     for (let i = 0; i < gridsize; i++) {
       for (let j = 0; j < gridsize; j++) {
         if ((i+j) % 2 == 0) {
-          let sw = grid[i][j];
-          let se = grid[i+1][j];
-          let ne = grid[i+1][j+1];
-          let nw = grid[i][j+1];
-          p.quad(sw.x,sw.y,se.x,se.y,ne.x,ne.y,nw.x,nw.y);
+          p.fill('pink');
         }
+        else {
+          p.fill('green');
+        }
+        let sw = grid[i][j];
+        let se = grid[i+1][j];
+        let ne = grid[i+1][j+1];
+        let nw = grid[i][j+1];
+        p.quad(sw.x,sw.y,se.x,se.y,ne.x,ne.y,nw.x,nw.y);
       }
     }
 
