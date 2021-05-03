@@ -1,48 +1,4 @@
 
-Vue.component('animation', {
-
-  template: `
-  <div>
-    <div class="center">
-
-      <div v-if="sliders" class="center-inline" v-for="s in sliders">
-        <div> {{s[0]}} = <span style="width: 2rem; margin: 0;">{{variables[getVarName(s)]}}</span> </div>
-        &nbsp;&nbsp;
-        <input type="range" :min="s[1]" :max="s[2]" :step="s[3]" 
-          v-model.number="variables[getVarName(s)]"></input>
-      </div>
-
-      <slot></slot>
-
-    </div>
-
-  <oldp5 v-if="code" src="./sketch.js" :data="{variables: variables, code: code}" v-bind.sync="variables"></oldp5>
-
-  </div>
-  `,
-
-  props: ['variables', 'sliders', 'code'],
-
-  methods: {
-    getVarName(val) {
-      return Object.keys(this.sliders).find(key => this.sliders[key] == val);
-    },
-
-    getVar(val) {
-      return this.variables[this.getVarName(val)];
-    },
-  },
-
-  data: function() {
-    return {
-    }
-  },
-
-  mounted() {
-
-  }
-
-});
 
 // custom markdown component
 Vue.component('md', {
@@ -188,66 +144,6 @@ Vue.component('p5', {
 })
 
 
-
-// old p5 component
-
-Vue.component('oldp5', {
-
-  template: '<div v-observe-visibility="visibilityChanged"></div>',
-
-  props: ['src','data'],
-
-  methods: {
-    // loadScript from https://stackoverflow.com/a/950146
-    // loads the p5 javscript code from a file
-    loadScript(url, callback)
-    {
-      // Adding the script tag to the head as suggested before
-      var head = document.head;
-      var script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = url;
-
-      // Then bind the event to the callback function.
-      // There are several events for cross browser compatibility.
-      script.onreadystatechange = callback;
-      script.onload = callback;
-
-      // Fire the loading
-      head.appendChild(script);
-    },
-
-    loadSketch() {
-      this.myp5 = new p5(sketch(this), this.$el);
-    },
-
-    visibilityChanged(isVisible, entry) {
-      this.isVisible = isVisible;
-    }
-  },
-
-  data: function() {
-    return {
-      myp5: {},
-      isVisible: false
-    }
-  },
-
-  mounted() {
-    this.loadScript(this.src, this.loadSketch);
-  },
-
-  watch: {
-    data: {
-      handler: function(val, oldVal) {
-        if(this.myp5.dataChanged) {
-          this.myp5.dataChanged(val, oldVal);
-        }
-      },
-      deep: true
-    }
-  }
-})
 
 // global data
 let app = new Vue({
