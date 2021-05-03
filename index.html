@@ -32,7 +32,25 @@ You can embed a p5 interactive with sliders.
 
 <!-- sketch variables defined at the bottom of the page -->
 
+
+
+<p>Which type of progession should we use?</p>
+  <label>
+    <input type="radio" value="harmonic" v-model="sketch1.progression_type" />
+    harmonic
+  </label>
+  <label>
+    <input type="radio" value="geometric" v-model="sketch1.progression_type" />
+    geometric
+  </label>
+  <p>Horizontal lines spaced in a <em>{{sketch1.progression_type}}</em> progression.</p>
+
+
+
 Common Ratio: {{sketch1.ratio}} <input type="range" min="0.75" max="0.84" step=".01" v-model="sketch1.ratio"></input>
+Horizon Line: {{sketch1.horizon}} <input type="range" min="-100" max="400" step="1" v-model="sketch1.horizon"></input>
+
+
 
 <p5 :vars="sketch1">
 p.setup = function() {
@@ -47,62 +65,86 @@ p.draw = function() {
     p.stroke('gray');
     p.strokeWeight(1);
     let base = p.height * 0.8;
-    // vars.horizon = p.mouseY;
+    //vars.horizon = p.mouseY;
     p.line(0,vars.horizon,p.width,vars.horizon); //draw horizon line
     p.line(0,base,p.width,base); // draw base line
 
-    let num;
-    let y;
-    if (vars.state === 0) { // the real (harmonic) sequence
-      num = 0;
-      while (num < 50) {
-        y = base + (vars.horizon - base)*(1 - 6*p.pow(num+6,-1));
+
+    let gridsize = 11;
+    let gridx = [];
+    let gridy = [];
+    for (let i = 0; i < gridsize+1; i++) {
+    gridx[i] = p.width * (i/gridsize);
+    }
+
+
+    if (vars.progression_type === 'harmonic') { // the real (harmonic) sequence
+      for (let num = 0; num < gridsize+1; num++) {
+        gridy[num] = base + (vars.horizon - base)*(1 - 6*p.pow(num+6,-1));
         p.stroke(150);
-        p.line(0, y, p.width, y);
-        num = num +1;
+        p.line(0, gridy[num], p.width, gridy[num]);
       }
     }
     else {   // and here is the fake (geometric) sequence
-      num = 0;
-      while (num < 20) {
-        let partial_sum = (0.75)*(1 - p.pow(vars.ratio,num+1))/(1-vars.ratio);
-        y = base + (vars.horizon - base)*(partial_sum/5.25);
-        p.line(0, y, p.width, y);
-        num = num +1;
+      for (let num = 0; num < gridsize+1; num++) {
+        let partial_sum = (0.75)*(1 - p.pow(vars.ratio,num))/(1-vars.ratio);
+        gridy[num] = base + (vars.horizon - base)*(partial_sum/5.25);
+        p.line(0, gridy[num], p.width, gridy[num]);
       }
     }
 
     vars.vp = p.mouseX;
-    let vanishing_point = p.createVector(vars.vp,vars.horizon);
-    num = 0;
-    while (num < 50) {
-      p.drawSegment(vanishing_point, p.createVector((.425 - (.15 * num)) * p.width,base), 150);
-      p.drawSegment(vanishing_point, p.createVector((.575 + (.15 * num)) * p.width,base), 150);
-      num = num + 1;
+    let vanishing_point = p.createVector(vars.vp,vars.horizon,1);
+    for (let num = 0; num < gridsize+1; num++) {
+      p.drawSegment(vanishing_point, p.createVector(gridx[num],base), 150);
+      //p.drawSegment(vanishing_point, p.createVector((.425 - (.15 * num)) * p.width,base,1), 150);
+      //p.drawSegment(vanishing_point, p.createVector((.575 + (.15 * num)) * p.width,base),1), 150);
     }
 
     p.fill('black');
     p.stroke('black');
-    p.rect(0, 0, p.width, y);
+    p.rect(0, 0, p.width, gridy[gridsize]);
+
+    p.fill('gray');
+    p.stroke('gray');
+    let grid = [];
+    for (let i = 0; i < gridsize + 1; i++) {
+      grid[i] = [];
+      let base_corner = p.createVector(gridx[i],base,1);
+      let vert = p.join(vanishing_point,base_corner);
+      for (let j = 0; j < gridsize + 1; j++) {
+        let horz = p.join(p.createVector(0,gridy[j],1),p.createVector(p.width,gridy[j],1));
+        grid[i][j] = p.meet(vert, horz);
+      }
+    }
+
+
+
+
+    for (let i = 0; i < gridsize; i++) {
+      for (let j = 0; j < gridsize; j++) {
+        if ((i+j) % 2 == 0) {
+          let sw = grid[i][j];
+          let se = grid[i+1][j];
+          let ne = grid[i+1][j+1];
+          let nw = grid[i][j+1];
+          p.quad(sw.x,sw.y,se.x,se.y,ne.x,ne.y,nw.x,nw.y);
+        }
+      }
+    }
+
+
 
     p.noStroke();
-    p.fill('green');
-    if (vars.state == 0) {
-      p.text('Harmonic Progression', p.width/2, p.height - 30);
+    p.fill('gray');
+    if (vars.progression_type == 'harmonic') {
+      p.text('harmonic progression', p.width/2, p.height - 30);
     } else {
-      p.text('Geometric Progression', p.width/2, p.height - 30);
+      p.text('geometric progression', p.width/2, p.height - 30);
     }
   }
 };
 
-
-p.mouseClicked = function() {
-  if (vars.state === 0) {
-    vars.state = 1;
-  } else {
-    vars.state = 0;
-  }
-};
 
 
 // draw an arrow for a vector at a given base position
@@ -113,6 +155,18 @@ p.drawSegment = function(base, vec, myColor) {
   p.fill(myColor);
   p.line(base.x, base.y, vec.x, vec.y);
   p.pop();
+}
+
+
+// joins two points and returns a line; uses p5.Vector to represent points as well as lines in affine plane z=1
+p.join = function(point1, point2) {
+  return p5.Vector.cross(point1,point2);
+}
+
+// intersects ('meets') two lines and returns a point; uses p5.Vector to represent points as well as lines in affine plane z=1
+p.meet = function(line1, line2) {
+  let meet = p5.Vector.cross(line1,line2);
+  return meet.div(meet.z);
 }
 </p5>
 
@@ -153,7 +207,7 @@ let data = {
 
   sketch1: {
     horizon: 50,
-    state: 1,
+    progression_type: 'harmonic',
     ratio: 0.75,
     vp: 300
   },
