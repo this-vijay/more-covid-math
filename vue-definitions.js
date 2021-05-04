@@ -1,6 +1,5 @@
-
-
 // custom markdown component
+
 Vue.component('md', {
 
   template: '<div ref="markdown" style="width: 100%"><slot></slot></div>',
@@ -143,21 +142,6 @@ Vue.component('p5', {
   }
 })
 
-
-
-// global data
-let app = new Vue({
-
-  el: '#root',
-
-  methods: {
-
-  },
-
-  computed: {
-
-  },
-
-  data: data
-
-})
+// load Vue
+// data is defined in index.html
+new Vue({el: '#root', data: data});
