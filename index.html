@@ -24,11 +24,16 @@
 ### A Template for Creating Explorable Documents With p5.js
 ## An exploration of linear perspective
 
+
+
 You might be tempted to try calculating the ratio between the apparent heights of the tiles, in order to figure out where the next horizontal line should lie.
 
 Surprisingly, this will not work, because the successive heights of the tiles do NOT follow a geometric progression!
 
-You can play with the ratio of the geometric progression and see why it fails. Pay attention to the diagonals of the tiles.  Can you make the corners
+You can play with the ratio of the geometric progression and see why it fails.
+
+ Pay attention to the diagonals of the tiles.  
+Can you make the corners
 line up along diagonal lines, by adjusting the common ratio?
 
 </md>
@@ -36,7 +41,8 @@ line up along diagonal lines, by adjusting the common ratio?
 <!-- sketch variables defined at the bottom of the page -->
 
 
-
+Show guide lines:
+<input type="checkbox" v-model="sketch1.guide"/>
 Show diagonal lines:
 <input type="checkbox" v-model="sketch1.diag" />
 Common Ratio: {{sketch1.ratio}} <input type="range" min="0.5" max="0.9" step=".01" v-model="sketch1.ratio"></input>
