@@ -28,8 +28,7 @@ You might be tempted to try calculating the ratio between the apparent heights o
 
 Surprisingly, this will not work, because the successive heights of the tiles do NOT follow a geometric progression!
 
-You can play with the ratio of the geometric progression and see why it fails.  Notice that the geometric progression
-never reaches the horizon line.  Also, pay attention to the diagonals of the tiles.  Can you make the corners
+You can play with the ratio of the geometric progression and see why it fails. Pay attention to the diagonals of the tiles.  Can you make the corners
 line up along diagonal lines, by adjusting the common ratio?
 
 </md>
@@ -64,6 +63,7 @@ p.draw = function() {
   //    vars.vp = p.mouseX;
   //  }
     p.line(0,vars.horizon,p.width,vars.horizon); //draw horizon line
+    p.text('horizon line', p.width/4, vars.horizon);
     p.line(0,base,p.width,base); // draw base line
 
 
@@ -90,6 +90,10 @@ p.draw = function() {
           p.line(0, gridy[j], p.width, gridy[j]);
         }
       }
+      let infinite_sum = (0.75)/(1-vars.ratio);
+      let fake_horizon = base + (vars.horizon - base)*(infinite_sum/5.25);
+      p.line(0, fake_horizon, p.width, fake_horizon);
+      p.text('limit of geometric progression', p.width/2, fake_horizon);
     }
 
     let vanishing_point = p.createVector(vars.vp,vars.horizon,1);
