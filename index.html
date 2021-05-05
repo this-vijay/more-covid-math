@@ -42,10 +42,10 @@ line up along diagonal lines, by adjusting the common ratio?
 
 
 Show guide lines:
-<input type="checkbox" v-model="sketch1.guide"/>
+<input type="checkbox" v-model="sketch1.guide">
 Show diagonal lines:
-<input type="checkbox" v-model="sketch1.diag" />
-Common Ratio: {{sketch1.ratio}} <input type="range" min="0.5" max="0.9" step=".01" v-model="sketch1.ratio"></input>
+<input type="checkbox" v-model="sketch1.diag">
+Common Ratio: {{sketch1.ratio}} <input type="range" min="0.5" max="0.9" step=".01" v-model="sketch1.ratio">
 
 <!-- Horizon Line: {{sketch1.horizon}} <input type="range" min="-100" max="400" step="1" v-model="sketch1.horizon"></input> -->
 
@@ -105,7 +105,7 @@ p.draw = function() {
     let vanishing_point = p.createVector(vars.vp,vars.horizon,1);
     if (vars.guide) {
       for (let i = 0; i < vars.gridsize+1; i++) {
-        p.drawSegment(vanishing_point, p.createVector(gridx[i],base), 150);
+        drawSegment(vanishing_point, p.createVector(gridx[i],base), 150);
       }
     }
 
@@ -164,7 +164,7 @@ p.draw = function() {
 
 
 // draw an arrow for a vector at a given base position
-p.drawSegment = function(base, vec, myColor) {
+function drawSegment(base, vec, myColor) {
   p.push();
   p.stroke(myColor);
   p.strokeWeight(1);
