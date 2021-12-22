@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Interactive Sandbox</title>
+  <title>More Math of COVID-19</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Unica+One|Vollkorn&display=swap" rel="stylesheet">
@@ -17,417 +17,66 @@
 </head>
 <body>
 
-<script>
-  // intersects two lines to return a point; input is four p5.Vector objects
-  function intersection(line1vec1, line1vec2,line2vec1,line2vec2) {
-    let vcross1 = line1vec1.cross(line1vec2);
-    let vcross2 = line2vec1.cross(line2vec2);
-    let intersection = vcross1.cross(vcross2);
-    intersection.div(intersection.z);
-    return intersection;
-  }
-  // joins two points and returns a line; uses p5.Vector to represent points as well as lines in affine plane z=1
-  function join(point1, point2) {
-    return p5.Vector.cross(point1,point2);
-  }
-
-  // intersects ('meets') two lines and returns a point; uses p5.Vector to represent points as well as lines in affine plane z=1, using Grassmann notation
-  function meet(line1, line2) {
-    let meet = p5.Vector.cross(line1,line2);
-    return meet.div(meet.z);
-  }
-</script>
 
 <div id="root" class="container">
 
 <md>
-# Interactive Sandbox
-### A Template for Creating Explorable Documents With p5.js
+# More Math of COVID-19
+### How we can bring this pandemic to an end with masks and social distancing!
 
-## Completing a perspective view of a tiled floor
+<div class="flex-container">
+ <img src="../more-covid-math/images/banner.png" class="shrinkToFit" width="100%">
+</div>
 
-You might be tempted to try calculating the ratio between the apparent heights of the tiles, in order to figure out where the next horizontal line should lie.
+<hr>
 
-Surprisingly, this will not work, because the successive heights of the tiles do NOT follow a geometric progression!
 
-You can play with the ratio of the geometric progression and see why it fails.
+Welcome back to Cuemath Valley! Unfortunately the valley is still facing more and more Coronavirus infections due to the ongoing COVID-19 pandemic. In this episode, you will review exponential growth and R-nought, then explore two powerful strategies for lowering R-nought: face masks and social distancing.  Finally, you will devise a plan that can theoretically bring the pandemic to an end!
 
- Pay attention to the diagonals of the tiles.
-Can you make the corners
-line up along diagonal lines, by adjusting the common ratio?
+Looks like you have a message from the Mayor -- he is requesting that you speak with him as soon as possible!  <a href="../more-covid-math/mayor.html">Click the map below to get started.</a>
 
-</md>
+<div class="flex-container">
+ <a href="../more-covid-math/mayor.html"><img src="../more-covid-math/images/map1.png" class="shrinkToFit" width="80%" style="border:4px solid #c31; border-radius: 15px;"></a>
+</div>
 
-<!-- sketch variables defined at the bottom of the page -->
 
+<br>
 
-Show guide lines:
-<input type="checkbox" v-model="sketch1.guide">
-Show diagonal lines:
-<input type="checkbox" v-model="sketch1.diag">
-Common Ratio: {{sketch1.ratio}} <input type="range" min="0.5" max="0.9" step=".01" v-model="sketch1.ratio">
+<hr>
+<hr>
 
-<!-- Horizon Line: {{sketch1.horizon}} <input type="range" min="-100" max="400" step="1" v-model="sketch1.horizon"> -->
+<br>
 
+Or, have you completed this episode already, and want to go to a specific chapter? Click any of the chapter links below!
 
-
-<p5 :vars="sketch1">
-p.setup = function() {
-  p.createCanvas(600, 400);
-  p.textAlign(p.CENTER, p.CENTER);
-};
-
-p.draw = function() {
-  if (parent.isVisible) { // only update draw loop when canvas is visible
-    p.background(0);
-    p.stroke('blue');
-    p.strokeWeight(1);
-    let base = p.height * 0.8;
-  //if ((p.mouseX > 0) && (p.mouseX < p.width) &&
-  // (p.mouseY > 0) && (p.mouseY < p.height)) {
-  //    vars.horizon = p.mouseY;
-  //    vars.vp = p.mouseX;
-  //  }
-    p.line(0,vars.horizon,p.width,vars.horizon); //draw horizon line
-    p.text('horizon line', p.width/4, vars.horizon);
-    p.line(0,base,p.width,base); // draw base line
-
-
-    let gridx = [];
-    let gridy = [];
-    for (let i = 0; i < vars.gridsize+1; i++) {
-    gridx[i] = p.width * (i/vars.gridsize);
-    }
-
-
-    if (vars.progression_type === 'harmonic') { // the real (harmonic) sequence
-      for (let j = 0; j < vars.gridsize+1; j++) {
-        gridy[j] = base + (vars.horizon - base)*(1 - 6*p.pow(j+6,-1));
-        if (vars.guide) {
-          p.line(0, gridy[j], p.width, gridy[j]);
-        }
-      }
-    }
-    else {   // and here is the fake (geometric) sequence
-      for (let j = 0; j < vars.gridsize+1; j++) {
-        let partial_sum = (0.75)*(1 - p.pow(vars.ratio,j))/(1-vars.ratio);
-        gridy[j] = base + (vars.horizon - base)*(partial_sum/5.25);
-        if (vars.guide) {
-          p.line(0, gridy[j], p.width, gridy[j]);
-        }
-      }
-      let infinite_sum = (0.75)/(1-vars.ratio);
-      let fake_horizon = base + (vars.horizon - base)*(infinite_sum/5.25);
-      p.line(0, fake_horizon, p.width, fake_horizon);
-      p.text('limit of geometric progression', p.width/2, fake_horizon);
-    }
-
-    let vanishing_point = p.createVector(vars.vp,vars.horizon,1);
-    if (vars.guide) {
-      for (let i = 0; i < vars.gridsize+1; i++) {
-        drawSegment(vanishing_point, p.createVector(gridx[i],base), 150,1);
-      }
-    }
-
-
-
-    let grid = [];
-    for (let i = 0; i < vars.gridsize + 1; i++) {
-      grid[i] = [];
-      let base_corner = p.createVector(gridx[i],base,1);
-      let vert = join(vanishing_point,base_corner);
-      for (let j = 0; j < vars.gridsize + 1; j++) {
-        let horz = join(p.createVector(0,gridy[j],1),p.createVector(p.width,gridy[j],1));
-        grid[i][j] = meet(vert, horz);
-      }
-    }
-
-
-
-    for (let i = 0; i < vars.gridsize; i++) {
-      for (let j = 0; j < vars.gridsize; j++) {
-        if ((i+j) % 2 == 0) {
-          p.fill('pink');
-        }
-        else {
-          p.fill('green');
-        }
-        let sw = grid[i][j];
-        let se = grid[i+1][j];
-        let ne = grid[i+1][j+1];
-        let nw = grid[i][j+1];
-        p.quad(sw.x,sw.y,se.x,se.y,ne.x,ne.y,nw.x,nw.y);
-      }
-    }
-
-    if (vars.diag) {
-      for (let i = 0; i < vars.gridsize; i++) {
-        let se = grid[i+1][0];
-        let nw = grid[i][1];
-        p.line(se.x, se.y, se.x + 100*(nw.x-se.x), se.y + 100*(nw.y-se.y));
-      }
-    }
-
-
-
-
-    p.noStroke();
-    p.fill('gray');
-    if (vars.progression_type == 'harmonic') {
-      p.text('harmonic progression', p.width/2, p.height - 30);
-    } else {
-      p.text('geometric progression', p.width/2, p.height - 30);
-    }
-  }
-};
-
-
-
-// draw an arrow for a vector at a given base position
-function drawSegment(base, vec, myColor, myWeight) {
-  p.push();
-  p.stroke(myColor);
-  p.strokeWeight(myWeight);
-  p.line(base.x, base.y, vec.x, vec.y);
-  p.pop();
-}
-
-</p5>
-
-<md>
-We can use the fact that the diagonals must appear as lines from any perspective in order to construct and accurate perspective drawing.
-In this case the heights of the horizontal lines will follow a harmonic progression.
-</md>
-
-<md>
-## Geometric vs. Harmonic Progressions
-</md>
-
-<p>Which type of progession should we use?</p>
-  <label>
-    <input type="radio" value="harmonic" v-model="sketch2.progression_type">
-    harmonic
-  </label>
-  <label>
-    <input type="radio" value="geometric" v-model="sketch2.progression_type">
-    geometric
-  </label>
-
-
-  <p>Move the mouse over the image to move the vanising point:</p>
-
-
-  Show diagonal lines:
-  <input type="checkbox" v-model="sketch2.diag">
-  Show guide lines:
-  <input type="checkbox" v-model="sketch2.guide">
-
-
-
-Grid Size: {{sketch2.gridsize}} <input type="range" min="3" max="11" step="1" v-model="sketch2.gridsize">
-
-<!-- Horizon Line: {{sketch2.horizon}} <input type="range" min="-100" max="400" step="1" v-model="sketch2.horizon"> -->
-
-
-
-<p5 :vars="sketch2">
-p.setup = function() {
-  p.createCanvas(600, 400);
-  p.textAlign(p.CENTER, p.CENTER);
-};
-
-p.draw = function() {
-  if (parent.isVisible) { // only update draw loop when canvas is visible
-    p.background(0);
-    p.stroke('blue');
-    p.strokeWeight(1);
-    let base = p.height * 0.8;
-  if ((p.mouseX > 0) && (p.mouseX < p.width) &&
-   (p.mouseY > 0) && (p.mouseY < p.height)) {
-      vars.horizon = p.mouseY;
-      vars.vp = p.mouseX;
-    }
-    p.line(0,vars.horizon,p.width,vars.horizon); //draw horizon line
-    p.line(0,base,p.width,base); // draw base line
-
-
-    let gridx = [];
-    let gridy = [];
-    for (let i = 0; i < vars.gridsize+1; i++) {
-    gridx[i] = p.width * (i/vars.gridsize);
-    }
-
-
-    if (vars.progression_type === 'harmonic') { // the real (harmonic) sequence
-      for (let j = 0; j < vars.gridsize+1; j++) {
-        gridy[j] = base + (vars.horizon - base)*(1 - 6*p.pow(j+6,-1));
-        if (vars.guide) {
-          p.line(0, gridy[j], p.width, gridy[j]);
-        }
-      }
-    }
-    else {   // and here is the fake (geometric) sequence
-      for (let j = 0; j < vars.gridsize+1; j++) {
-        let partial_sum = (0.75)*(1 - p.pow(vars.ratio,j))/(1-vars.ratio);
-        gridy[j] = base + (vars.horizon - base)*(partial_sum/5.25);
-        if (vars.guide) {
-          p.line(0, gridy[j], p.width, gridy[j]);
-        }
-      }
-    }
-
-    let vanishing_point = p.createVector(vars.vp,vars.horizon,1);
-
-    let grid = [];
-    for (let i = 0; i < vars.gridsize + 1; i++) {
-      grid[i] = [];
-      let base_corner = p.createVector(gridx[i],base,1);
-      let vert = join(vanishing_point,base_corner);
-      for (let j = 0; j < vars.gridsize + 1; j++) {
-        let horz = join(p.createVector(0,gridy[j],1),p.createVector(p.width,gridy[j],1));
-        grid[i][j] = meet(vert, horz);
-      }
-    }
-
-
-
-    for (let i = 0; i < vars.gridsize; i++) {
-      for (let j = 0; j < vars.gridsize; j++) {
-        if ((i+j) % 2 == 0) {
-          p.fill('pink');
-        }
-        else {
-          p.fill('green');
-        }
-        let sw = grid[i][j];
-        let se = grid[i+1][j];
-        let ne = grid[i+1][j+1];
-        let nw = grid[i][j+1];
-        p.quad(sw.x,sw.y,se.x,se.y,ne.x,ne.y,nw.x,nw.y);
-      }
-    }
-
-    if (vars.diag) {
-      for (let i = 0; i < vars.gridsize; i++) {
-        let se = grid[i+1][0];
-        let nw = grid[i][1];
-        p.line(se.x, se.y, se.x + 100*(nw.x-se.x), se.y + 100*(nw.y-se.y));
-      }
-    }
-
-    if (vars.guide) {
-      for (let i = 0; i < vars.gridsize+1; i++) {
-        drawSegment(vanishing_point, p.createVector(gridx[i],base), 'blue',1);
-      }
-    }
-
-
-
-    p.noStroke();
-    p.fill('gray');
-    if (vars.progression_type == 'harmonic') {
-      p.text('harmonic progression', p.width/2, p.height - 30);
-    } else {
-      p.text('geometric progression', p.width/2, p.height - 30);
-    }
-  }
-};
-
-
-
-// draw an arrow for a vector at a given base position
-function drawSegment(base, vec, myColor, myWeight) {
-  p.push();
-  p.stroke(myColor);
-  p.strokeWeight(myWeight);
-  p.line(base.x, base.y, vec.x, vec.y);
-  p.pop();
-}
-
-
-
-
-
-</p5>
-
-<md>
-## The four vanishing points of a tile
-
-Here's another mystery to explore: in two point perspective the fourth vanishing point is determined by the first three!
-Move the mouse over the image to change the position of the tile.
 </md>
 
 
 
 
-
-show guide lines:
-<input type="checkbox" v-model="sketch3.guide">
-
-Square Size: <input type="range" min="0.5" max="0.9" step=".01" v-model="sketch3.side">
-
-<p5 :vars="sketch3">
-  p.setup = function() {
-    p.createCanvas(600,400);
-  }
-
-  p.draw = function() {
-  p.background(240);
+<div class="flex-container">
+ <a href="../more-covid-math/mayor.html" class="chapter-link"><figure><img src="../more-covid-math/images/mayor-blinking.png"  style="height:12em">
+  <figcaption>Chapter 1: The Mayor's Plan</figcaption></figure></a>
 
 
-
-    let v_left = p.createVector(0.15 * p.width, .3 * p.height,1);
-    let v_right = p.createVector(0.85 * p.width,.3 * p.height,1);
-    let v_center = p.createVector(0.4 * p.width,.3 * p.height,1)
-    let corner_front = p.createVector(p.mouseX, p.mouseY,1);
-    let corner_left = p.createVector(vars.side * corner_front.x + (1-vars.side) * v_left.x, vars.side * corner_front.y + (1-vars.side) * v_left.y,1);
-    let corner_back = intersection(v_right, corner_left, v_center, corner_front);
-    let corner_right = intersection(v_right, corner_front, v_left, corner_back);
+ <a href="../more-covid-math/coronavirus.html" class="chapter-link"><figure><img src="../more-covid-math/images/coronavirus.png"  style="height:12em">
+  <figcaption>Chapter 2: Behind Enemy Lines! </figcaption></figure></a>
 
 
-
-    if (p.mouseY > 0.3*p.height) {p.fill('pink')}
-    else {p.fill('purple')};
-
-    p.quad(corner_front.x, corner_front.y, corner_left.x,corner_left.y, corner_back.x, corner_back.y, corner_right.x, corner_right.y);
-
-    drawSegment(corner_back, corner_right, 'gray', 2);
-    drawSegment(corner_back, corner_left, 'gray', 2);
-    drawSegment(corner_left, corner_front, 'black', 2);
-    drawSegment(corner_right, corner_front, 'black', 2);
+ <a href="../more-covid-math/beekeeper.html" class="chapter-link"><figure><img src="../more-covid-math/images/beekeeper-blinking.png"  style="height:12em">
+  <figcaption>Chapter 3: Honeybee Wisdom</figcaption></figure></a>
 
 
-
-    p.stroke('purple'); // Change the color
-    p.strokeWeight(2);
-    p.line(0,.3 * p.height,p.width,.3 * p.height);
-
-    // show guide lines
-    if (vars.guide) {
-      p.stroke('gray');
-      p.line(v_left.x, v_left.y, p.mouseX, p.mouseY);
-      p.line(v_right.x, v_right.y, p.mouseX, p.mouseY);
-      p.line(v_center.x, v_center.y, p.mouseX, p.mouseY);
-      p.line(corner_left.x, corner_left.y, corner_right.x, corner_right.y);
-    }
-
-  }
-
-  // draw an arrow for a vector at a given base position
- function drawSegment(base, vec, myColor, myWeight) {
-    p.push();
-    p.stroke(myColor);
-    p.strokeWeight(myWeight);
-    p.line(base.x, base.y, vec.x, vec.y);
-    p.pop();
-  }
+ <a href="../more-covid-math/fisherwoman.html" class="chapter-link"><figure><img src="../more-covid-math/images/fisherwoman-blinking.png"  style="height:12em">
+  <figcaption>Chapter 4: Fishing for Solutions</figcaption></figure></a>
 
 
-
-</p5>
+ <a href="../more-covid-math/finale.html" class="chapter-link"><figure><img src="../more-covid-math/images/everyone.png"  style="width:40vw">
+  <figcaption>Chapter 5: Ending the Pandemic</figcaption></figure></a>
+</div>
 
 <md>
-Try changing the code or adding more interactives! (Remember to write the p5 code in [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode).)
+Are you a parent or teacher? In <a href="../more-covid-math/Educators-Doc.pdf" style="margin: 0;">this document for educators</a>, we summarize the key takeaways from each chapter, and also offer suggestions for further exploration for you and your child or student.
 </md>
 
 </div>
@@ -435,31 +84,6 @@ Try changing the code or adding more interactives! (Remember to write the p5 cod
 <!-- here we define data accessible throughout the page -->
 <script>
 let data = {
-
-  sketch1: {
-    horizon: 50,
-    progression_type: 'geometric',
-    ratio: 0.75,
-    vp: 300,
-    diag: true,
-    guide: false,
-    gridsize: 7
-  },
-
-  sketch2: {
-    horizon: 50,
-    progression_type: 'harmonic',
-    ratio: 0.75,
-    vp: 300,
-    diag: false,
-    guide: false,
-    gridsize: 5
-  },
-
-  sketch3: {
-    side : .7,
-    guide: false
-  },
 };
 </script>
 <!-- vue-definitions.js runs vue.js and defines the components -->
