@@ -30,18 +30,16 @@
 
 <hr>
 
-## Part 1: The Mayor's Plan
+## Chapter 2: Behind Enemy Lines!
 
 
-
-
-You have an incoming video call from the Mayor.  Must be something important!
+Unbelievable! The Coronavirus is actually answering our video call.  Okay, here goes nothing!
 </md>
 
 
 <div class="video-container">
   <iframe
-      src="https://www.youtube.com/embed/wi1GMFHuGm8"
+      src="https://www.youtube.com/embed/4YstvKPjFtg"
       width="700"
       height="480"
       frameborder="0"
@@ -50,33 +48,44 @@ You have an incoming video call from the Mayor.  Must be something important!
 </div>
 
 
+<md>The puppet's name is <i>Beatrice</i>?  Well, let's see what we can learn from this 'model human'.</md>
 
-<div class="exercise-box">
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/IBloZuh--5E"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+<div class="exercise-box2">
   <h4>Exercise 1</h4>
-    <img src="../more-covid-math/images/mayor-exercise1.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/corona-exercise1.png" class="shrinkToFit" width="90%">
 <br>
     <p><input type="radio" value="1" v-model="question1.answer">
-      10 heads and 90 tails</p>
+      2</p>
     <p><input type="radio" value="2" v-model="question1.answer">
-      25 heads and 75 tails</p>
+      <label v-if="question1.answer != '2'">3</label>
+      <b v-if="question1.answer == '2'">3</b></p>
     <p><input type="radio" value="3" v-model="question1.answer">
-      <label v-if="question1.answer != '3'">50 heads and 50 tails</label>
-      <b v-if="question1.answer == '3'">50 heads and 50 tails</b></p>
+      4</p>
     <p><input type="radio" value="4" v-model="question1.answer">
-      100 heads and 0 tails</p>
+      6</p>
   
     <p v-if="question1.answer == '0'"></p>
-    <p v-if="question1.answer == '1'" class="false">Sorry, but that's extremely unlikely to happen!</p>
-    <p v-if="question1.answer == '2'" class="false">Not quite -- there's a significantly more likely outcome!</p>
-    <p v-if="question1.answer == '3'" class="true">Yes! This is the most likely outcome of the one's listed.</p>
-    <p v-if="question1.answer == '4'" class="false">Yikes, that's a nearly impossible outcome!</p>
+    <p v-if="question1.answer == '1'" class="false">Not quite.  Although 2 branches is quite possible, there is an even more likely number.</p>
+    <p v-if="question1.answer == '2'" class="true">Correct!  Since 3 is 50% of 6, that is the most likely number of branches.  But remember, with numbers this small, Beatrice could realistically have anywhere from 0 to 6 branches.</p>
+    <p v-if="question1.answer == '3'" class="false">Not quite.  Although 4 branches is very possible, there is an even more likely number.</p>
+    <p v-if="question1.answer == '4'" class="false">Not quite.  Although 6 branches is possible, there is a much more likely number.</p>
 </div>
 
 
-<md>But what do coin flips have to do with the pandemic?</md>
+<md>Okay, here's what we've been waiting for: her strategies for spreading faster!</md>
 <div class="video-container">
   <iframe
-      src="https://www.youtube.com/embed/n0shd-TRuDo"
+      src="https://www.youtube.com/embed/62ctyUdOUlU"
       width="700"
       height="480"
       frameborder="0"
@@ -85,136 +94,120 @@ You have an incoming video call from the Mayor.  Must be something important!
 </div>
 
 
-<div class="exercise-box" style="background-color: palegoldenrod; padding: 20px; margin-top: 30px; margin-bottom: 30px;  border-radius: 25px;">
-  <center>
+<div class="exercise-box2">
   <h4>Exercise 2</h4>
-    <img src="../more-covid-math/images/mayor-exercise2a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise2b-advanced.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/corona-exercise2.png" class="shrinkToFit" width="90%">
 <br>
     <p><input type="radio" value="1" v-model="question2.answer">
-      8</p>
+      Keeping two meters distance in public.</p>
     <p><input type="radio" value="2" v-model="question2.answer">
-      12</p>
+      Drinking lots of water.</p>
     <p><input type="radio" value="3" v-model="question2.answer">
-      <label v-if="question2.answer != '3'">16</label>
-      <b v-if="question2.answer == '3'">16</b></p>
+      <label v-if="question2.answer != '3'">Never wearing a face mask.</label>
+      <b v-if="question2.answer == '3'">Never wearing a face mask.</b></p>
     <p><input type="radio" value="4" v-model="question2.answer">
-      32</p>
+      Playing violin.</p>
   
     <p v-if="question2.answer == '0'"></p>
-    <p v-if="question2.answer == '1'" class="false">No...</p>
-    <p v-if="question2.answer == '2'" class="false">Sorry, but that's incorrect.</p>
-    <p v-if="question2.answer == '3'" class="true">Yes, you got it!</p>
-    <p v-if="question2.answer == '4'" class="false">Nope, that's too high!</p>
-</center>
+    <p v-if="question2.answer == '1'" class="false">Sorry, but by keeping a physical distance, she will have <i>fewer</i> close encounters, which means fewer chances to spread the infection.</p>
+    <p v-if="question2.answer == '2'" class="false">No, sorry. If anything, staying hydrated is good for her immune system.</p>
+    <p v-if="question2.answer == '3'" class="true">Yes! Without a face mask, there will be a higher chance of infection in each meeting Beatrice has!</p>
+    <p v-if="question2.answer == '4'" class="false">No no, it's quite the opposite.  Whenever she plays violin people run away screaming!</p>
 </div>
 
 
-
-<div class="exercise-box" style="background-color: palegoldenrod; padding: 20px; margin-top: 30px; margin-bottom: 30px;  border-radius: 25px;">
-  <center>
+<div class="exercise-box2">
   <h4>Exercise 3</h4>
-    <img src="../more-covid-math/images/mayor-exercise3a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise3b-advanced.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/corona-exercise3.png" class="shrinkToFit" width="90%">
 <br>
     <p><input type="radio" value="1" v-model="question3.answer">
-      16</p>
+      Having a big birthday party at home with lots of guests.</p>
     <p><input type="radio" value="2" v-model="question3.answer">
-      27</p>
+      Wearing yellow clothing.</p>
     <p><input type="radio" value="3" v-model="question3.answer">
-      63</p>
+      <label v-if="question3.answer != '3'">Properly wearing a well-fitting face mask.</label>
+      <b v-if="question3.answer == '3'">Properly wearing a well-fitting face mask.</b></p>
     <p><input type="radio" value="4" v-model="question3.answer">
-      <label v-if="question3.answer != '4'">81</label>
-      <b v-if="question3.answer == '4'">81</b></p>
+      Never washing your hands.</p>
   
     <p v-if="question3.answer == '0'"></p>
-    <p v-if="question3.answer == '1'" class="false">Nope.</p>
-    <p v-if="question3.answer == '2'" class="false">No, that's the number of infected people at level 3.</p>
-    <p v-if="question3.answer == '3'" class="false">No, that's not it!</p>
-    <p v-if="question3.answer == '4'" class="true">Correct, since 3 x 3 x 3 x 3 is 81.</p>
-</center>
+    <p v-if="question3.answer == '1'" class="false">Nope. During a large gathering, many more meetings between individuals will take place, and each meeting is another opportunity for infection.</p>
+    <p v-if="question3.answer == '2'" class="false">I wish.  But unless it's a particularly ghastly shade of yellow that drives everyone away from you, your fashion choices won't make any difference.</p>
+    <p v-if="question3.answer == '3'" class="true">Yes! A good face mask will reduce the chance of infection during a meeting.</p>
+    <p v-if="question3.answer == '4'" class="false">Yikes! That seems like a great way to increase the spread!</p>
 </div>
 
 
 
-<div class="exercise-box" style="background-color: palegoldenrod; padding: 20px; margin-top: 30px; margin-bottom: 30px;  border-radius: 25px;">
-  <center>
+
+<md>The return of our friend R-nought!</md>
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/znvFup-XFhs"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+
+
+<div class="exercise-box2">
   <h4>Exercise 4</h4>
-    <img src="../more-covid-math/images/mayor-exercise4a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise4b.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/corona-exercise4.png" class="shrinkToFit" width="90%">
 <br>
     <p><input type="radio" value="1" v-model="question4.answer">
-      0</p>
+      1</p>
     <p><input type="radio" value="2" v-model="question4.answer">
-      <label v-if="question4.answer != '2'">1</label>
-      <b v-if="question4.answer == '2'">1</b></p>
+      2</p>
     <p><input type="radio" value="3" v-model="question4.answer">
-      5</p>
+      4</p>
     <p><input type="radio" value="4" v-model="question4.answer">
-      6</p>
-
+      <label v-if="question4.answer != '4'">8</label>
+      <b v-if="question4.answer == '4'">8</b></p>
   
     <p v-if="question4.answer == '0'"></p>
-    <p v-if="question4.answer == '1'" class="false">Nope, we are not so lucky.</p>
-    <p v-if="question4.answer == '2'" class="true">Correct! At any level, just one new person will get infected.</p>
-    <p v-if="question4.answer == '3'" class="false">No, sorry!</p>
-    <p v-if="question4.answer == '4'" class="false">No, that's the total number of people that have been infected in levels 0 through 5.</p>
-</center>
+    <p v-if="question4.answer == '1'" class="false">Nope, R-nought will increase, not decrease!</p>
+    <p v-if="question4.answer == '2'" class="false">Nope, R-nought will increase, not stay the same!</p>
+    <p v-if="question4.answer == '3'" class="false">No, R-nought will increase even more!</p>
+    <p v-if="question4.answer == '4'" class="true">That's correct!  R-nought will also quadruple, since it
+    is a multiple of the chance of infection.</p>
 </div>
 
 
 
-<md>This is really about R-nought!</md>
-<div class="video-container">
-  <iframe
-      src="https://www.youtube.com/embed/k9S64g_7Sy4"
-      width="700"
-      height="480"
-      frameborder="0"
-      allowfullscreen="">
-  </iframe>
-</div>
-
-<md>How can R-nought be a fraction?</md>
-<div class="video-container">
-  <iframe
-      src="https://www.youtube.com/embed/LXBb4phxpew"
-      width="700"
-      height="480"
-      frameborder="0"
-      allowfullscreen="">
-  </iframe>
-</div>
-
-<div class="exercise-box" style="background-color: palegoldenrod; padding: 20px; margin-top: 30px; margin-bottom: 30px;  border-radius: 25px;">
-  <center>
+<div class="exercise-box2">
   <h4>Exercise 5</h4>
-    <img src="../more-covid-math/images/mayor-exercise5a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise5b.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise5c.png" class="shrinkToFit" width="90%">
-</center>
+    <img src="../more-covid-math/images/corona-exercise5.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question5.answer">
+      A: Getting everybody to meet half as many people per day, on average.</p>
+    <p><input type="radio" value="2" v-model="question5.answer">
+     B: Using face masks to reduce the chance of infection in a given interaction by 50%.</p>
+    <p><input type="radio" value="3" v-model="question5.answer">
+      <label v-if="question5.answer != '3'">C: Doing both A and B.</label>
+      <b v-if="question5.answer == '3'">C: Doing both A and B.</b></p>
+    <p><input type="radio" value="4" v-model="question5.answer">
+      D: None of the above.</p>
+  
+    <p v-if="question5.answer == '0'"></p>
+    <p v-if="question5.answer == '1'" class="false">Almost!  That will cut R-nought in half, making it 1.5.  So not quite good enough!</p>
+    <p v-if="question5.answer == '2'" class="false">Getting there!  This will cut R-nought in half, making it 1.5.  So not quite good enough!</p>
+    <p v-if="question5.answer == '3'" class="true">Yes! Doing both A and B will multiply R-nought by 0.25, reducing it to 0.75, which is less than 1.</p>
+    <p v-if="question5.answer == '4'" class="false">Hmmm, really? Look more carefully. There is a way to bring R-nought below 1.</p>
 </div>
 
 
 
-<md>Listen to the Mayor's brilliant plan!</md>
-<div class="video-container">
-  <iframe
-      src="https://www.youtube.com/embed/jyx5diRxcFM"
-      width="700"
-      height="480"
-      frameborder="0"
-      allowfullscreen="">
-  </iframe>
-</div>
 
 
-<md>The Mayor's plan sounds very...original! 
+<md>This Coronavirus is turning out to be a great ally!  We got all the information we needed.
 
-Let's try video calling the Coronavirus.  Click the map below when you're ready!</md>
+And we even know where to go next!  Click the map below to visit the Beekeeper.</md>
 
 <div class="flex-container">
- <a href="../more-covid-math/coronavirus.html"><img src="../more-covid-math/images/map2.png" class="shrinkToFit" width="80%" style="border:2px solid grey; border-radius: 15px;"></a>
+ <a href="../more-covid-math/beekeeper.html"><img src="../more-covid-math/images/map3.png" class="shrinkToFit" width="80%" style="border:2px solid grey; border-radius: 15px;"></a>
 </div>
 
 
@@ -242,6 +235,10 @@ let data = {
   },
 
   question4: {
+    answer: 0
+  },
+
+  question5: {
     answer: 0
   },
 };

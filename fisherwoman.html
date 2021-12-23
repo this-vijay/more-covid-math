@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>More Math of COVID-19</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Unica+One|Vollkorn&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+  <script src="./libraries/katex.min.js"></script>
+  <script src="./libraries/p5.min.js"></script>
+  <script src="./libraries/marked.min.js"></script>
+  <script src="./libraries/vue.js"></script>
+  <script src="./libraries/vue-observe-visibility.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="description" content="Interactive Sandbox" />
+
+</head>
+<body>
+
+
+<div id="root" class="container">
+
+<md>
+# More Math of COVID-19
+### How we can bring this pandemic to an end with masks and social distancing!
+
+<div class="flex-container">
+ <img src="../more-covid-math/images/banner.png" class="shrinkToFit" width="100%">
+</div>
+
+<hr>
+
+## Chapter 4: Fishing for Solutions
+
+
+Let's contact the Fisherwoman!
+</md>
+
+
+
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/lrT-D014NzU"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+
+
+
+
+<div class="exercise-box4">
+  <h4>Exercise 1</h4>
+    <img src="../more-covid-math/images/fisher-exercise1.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question1.answer">
+      25</p>
+    <p><input type="radio" value="2" v-model="question1.answer">
+      50</p>
+    <p><input type="radio" value="3" v-model="question1.answer">
+      <label v-if="question1.answer != '3'">100</label>
+      <b v-if="question1.answer == '3'">100</b></p>
+    <p><input type="radio" value="4" v-model="question1.answer">
+      150</p>
+  
+    <p v-if="question1.answer == '0'"></p>
+    <p v-if="question1.answer == '1'" class="false">I can count on catching more than that!</p>
+    <p v-if="question1.answer == '2'" class="false">That's too low.</p>
+    <p v-if="question1.answer == '3'" class="true">Yes! I can expect to catch around 100 fish in my net, out of the 200 my net comes in contact with.</p>
+    <p v-if="question1.answer == '4'" class="false">That's too optimistic.</p>
+</div>
+
+
+
+
+
+<div class="exercise-box4">
+  <h4>Exercise 2</h4>
+    <img src="../more-covid-math/images/fisher-exercise2.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question2.answer">
+      50</p>
+    <p><input type="radio" value="2" v-model="question2.answer">
+      100</p>
+    <p><input type="radio" value="3" v-model="question2.answer">
+      <label v-if="question2.answer != '3'">150</label>
+      <b v-if="question2.answer == '3'">150</b></p>
+    <p><input type="radio" value="4" v-model="question2.answer">
+      200</p>
+  
+    <p v-if="question2.answer == '0'"></p>
+    <p v-if="question2.answer == '1'" class="false">No, that's much too low.</p>
+    <p v-if="question2.answer == '2'" class="false">With my old 50% net that would be correct, but remember, this my new net, with a 75% catch rate! </p>
+    <p v-if="question2.answer == '3'" class="true">Yes! 75% of 200 is 150, so I can expect to catch around that number of fish.</p>
+    <p v-if="question2.answer == '4'" class="false">Nope, that is far too many!</p>
+</div>
+
+
+
+<md>Fishing for coronaviruses?</md>
+
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/izR8g3qOuKQ"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+
+
+<md>The tale of the Baker and the Carpenter.</md>
+
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/cw-uNp_p1OE"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+<div class="exercise-box4">
+  <h4>Exercise 3</h4>
+    <img src="../more-covid-math/images/fisher-exercise3.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question3.answer">
+      1 million</p>
+    <p><input type="radio" value="2" v-model="question3.answer">
+      <label v-if="question3.answer != '2'">5 million</label>
+      <b v-if="question3.answer == '2'">5 million</b></p>
+    <p><input type="radio" value="3" v-model="question3.answer">
+      50 million</p>
+    <p><input type="radio" value="4" v-model="question3.answer">
+      95 million</p>
+  
+    <p v-if="question3.answer == '0'"></p>
+    <p v-if="question3.answer == '1'" class="false">No, even an N95 mask is not that effective.</p>
+    <p v-if="question3.answer == '2'" class="true">Yes!  The mask will trap 95 million viruses, and only 5 million will make it through to the Carpenter.</p>
+    <p v-if="question3.answer == '3'" class="false">No, an N95 is much better than that.  A simple cloth mask on the other hand might let 50% of the viruses through.</p>
+    <p v-if="question3.answer == '4'" class="false">Yikes! That's a lot of viruses getting through the mask.  An <i>N5 mask</i> might trap only 5% of the viruses, but thankfully that mask doesn't exist!  </p>
+</div>
+
+
+
+
+<md>Do you know the most amazing fact about masks!?</md>
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/7nYQSVhl5NA"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+
+
+
+<div class="exercise-box4">
+  <h4>Exercise 4</h4>
+    <img src="../more-covid-math/images/fisher-exercise4a.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/fisher-exercise4b.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question4.answer">
+      <label v-if="question4.answer != '1'">16 million</label>
+      <b v-if="question4.answer == '1'">16 million</b></p>    
+    <p><input type="radio" value="2" v-model="question4.answer">
+      36 million</p>
+    <p><input type="radio" value="3" v-model="question4.answer">
+      40 million</p>
+    <p><input type="radio" value="4" v-model="question4.answer">
+      60 million</p>
+
+  
+    <p v-if="question4.answer == '0'"></p>
+    <p v-if="question4.answer == '1'" class="true">Yes! 40 percent of 40 percent is 16 percent!</p>
+    <p v-if="question4.answer == '2'" class="false">Nope, that's too many!</p>
+    <p v-if="question4.answer == '3'" class="false">No, that's if only one person is wearing a mask.</p>
+    <p v-if="question4.answer == '4'" class="false">No no, that's the total number of viruses that get trapped in the first mask.  But how many make it through both masks?</p>
+</div>
+
+
+
+<md>How do masks affect R-nought?</md>
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/nn_B6Ua-8Fc"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+
+<div class="exercise-box4">
+  <h4>Exercise 5</h4>
+    <img src="../more-covid-math/images/fisher-exercise5a.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/fisher-exercise5b.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question5.answer">
+      0.16</p>
+    <p><input type="radio" value="2" v-model="question5.answer">
+      <label v-if="question5.answer != '2'">0.48</label>
+      <b v-if="question5.answer == '2'">0.48</b></p>
+    <p><input type="radio" value="3" v-model="question5.answer">
+     1.35</p>
+    <p><input type="radio" value="4" v-model="question5.answer">
+      1.80</p>
+  
+    <p v-if="question5.answer == '0'"></p>
+    <p v-if="question5.answer == '1'" class="false">No, that's the factor R-nought will be multiplied by.</p>
+    <p v-if="question5.answer == '2'" class="true">Yes!  The new R-nought will be 0.16 x 3 = 0.48.</p>
+    <p v-if="question5.answer == '3'" class="false">Nope, we'll do better than that.</p>
+    <p v-if="question5.answer == '4'" class="false">No - thankfully we will lower R-nought much more.</p>
+</div>
+
+
+
+
+<md>So mask effectiveness <i>squares</i>!  Better let the Mayor know about this.  Click the map below to continue!</md>
+
+<div class="flex-container">
+ <a href="../more-covid-math/finale.html"><img src="../more-covid-math/images/map5.png" class="shrinkToFit" width="80%" style="border:2px solid grey; border-radius: 15px;"></a>
+</div>
+
+
+
+</div>
+
+<!-- here we define data accessible throughout the page -->
+<script>
+let data = {
+
+  aside1: {
+    expand: false
+  },
+
+  question1: {
+    answer: 0
+  },
+
+  question2: {
+    answer: 0
+  },
+
+  question3: {
+    answer: 0
+  },
+
+  question4: {
+    answer: 0
+  },
+
+  question5: {
+    answer: 0
+  },
+
+  question6: {
+    answer: 0
+  },
+
+  question7: {
+    answer: 0
+  },
+
+  question8: {
+    answer: 0
+  },
+};
+</script>
+<!-- vue-definitions.js runs vue.js and defines the components -->
+<script src="vue-definitions.js"></script>
+
+</body>
+</html>

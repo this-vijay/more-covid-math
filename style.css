@@ -44,6 +44,17 @@ figcaption {
   color: #c31;
 }
 
+.answer {
+  display: table-caption;
+  caption-side: bottom;
+  text-align:  center;
+  font-family: 'Avenir Next';
+  font-weight:400;
+  font-size: 1.2rem;
+  text-transform: none;
+  color: black;
+}
+
 
 
 aside {
@@ -86,7 +97,35 @@ aside {
   box-shadow: 5px 10px #888888;
 }
 
+.exercise-box2 {
+  background-color: #e6bfb0; 
+  padding: 20px; 
+  margin-top: 30px; 
+  margin-bottom: 30px;  
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 5px 10px #97a292;
+}
 
+.exercise-box3 {
+  background-color: #9FD9E5; 
+  padding: 20px; 
+  margin-top: 30px; 
+  margin-bottom: 30px;  
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 5px 10px #BBA996;
+}
+
+.exercise-box4 {
+  background-color: #9AC281; 
+  padding: 20px; 
+  margin-top: 30px; 
+  margin-bottom: 30px;  
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 5px 10px #BBA996;
+}
 
 .flex-container {
   display: flex;

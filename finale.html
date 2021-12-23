@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>More Math of COVID-19</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Unica+One|Vollkorn&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+  <script src="./libraries/katex.min.js"></script>
+  <script src="./libraries/p5.min.js"></script>
+  <script src="./libraries/marked.min.js"></script>
+  <script src="./libraries/vue.js"></script>
+  <script src="./libraries/vue-observe-visibility.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="description" content="Interactive Sandbox" />
+
+</head>
+<body>
+
+
+<div id="root" class="container">
+
+<md>
+# More Math of COVID-19
+### How we can bring this pandemic to an end with masks and social distancing!
+
+<div class="flex-container">
+ <img src="../more-covid-math/images/banner.png" class="shrinkToFit" width="100%">
+</div>
+
+<hr>
+
+## Chapter 5: Ending the Pandemic
+
+
+Let's report back to the Mayor.
+</md>
+
+
+
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/Mh3Dc7RoQTw"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+
+
+
+
+<div class="exercise-box">
+  <h4>Exercise 1</h4>
+    <img src="../more-covid-math/images/finale-exercise1.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question1.answer">
+      12.5%</p>
+    <p><input type="radio" value="2" v-model="question1.answer">
+      <label v-if="question1.answer != '2'">25%</label>
+      <b v-if="question1.answer == '2'">25%</b></p>
+    <p><input type="radio" value="3" v-model="question1.answer">
+      50%</p>
+    <p><input type="radio" value="4" v-model="question1.answer">
+      75%</p>
+  
+    <p v-if="question1.answer == '0'"></p>
+    <p v-if="question1.answer == '1'" class="false">It's better than that.</p>
+    <p v-if="question1.answer == '2'" class="true">Yes!  The four scenarios are equally likely, and only one involves both people wearing a mask.</p>
+    <p v-if="question1.answer == '3'" class="false">No, that's too high.</p>
+    <p v-if="question1.answer == '4'" class="false">No, that's much too high.</p>
+</div>
+
+
+
+
+<md>The four scenarios.</md>
+
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/mGbLiyYeg1o"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+<div class="exercise-box">
+  <h4>Exercise 2</h4>
+    <img src="../more-covid-math/images/finale-exercise2.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question2.answer">
+      50%</p>
+    <p><input type="radio" value="2" v-model="question2.answer">
+      <label v-if="question2.answer != '2'">56.25%</label>
+      <b v-if="question2.answer == '2'">56.25%</b></p>
+    <p><input type="radio" value="3" v-model="question2.answer">
+      58.33%</p>
+    <p><input type="radio" value="4" v-model="question2.answer">
+      66.66%</p>
+  
+    <p v-if="question2.answer == '0'"></p>
+    <p v-if="question2.answer == '1'" class="false">No, not quite.</p>
+    <p v-if="question2.answer == '2'" class="true">Yes.  The average of 100%, 50%, 50%, and 25% is 225%/4 = 56.25%</p>
+    <p v-if="question2.answer == '3'" class="false">Sorry, but not quite.</p>
+    <p v-if="question2.answer == '4'" class="false">Nope! That's too high!</p>
+</div>
+
+
+
+<md>Thanks to you, I can finally stop flipping this coin!</md>
+
+<div class="video-container">
+  <iframe
+      src="https://www.youtube.com/embed/Z9iAmkH8tBQ"
+      width="700"
+      height="480"
+      frameborder="0"
+      allowfullscreen="">
+  </iframe>
+</div>
+
+<div class="exercise-box">
+  <h4>Exercise 3</h4>
+    <img src="../more-covid-math/images/finale-exercise3a.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/finale-exercise3b.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/finale-exercise3c.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question3.answer">
+      40%</p>
+    <p><input type="radio" value="2" v-model="question3.answer">
+      <label v-if="question3.answer != '2'">49%</label>
+      <b v-if="question3.answer == '2'">49%</b></p>
+    <p><input type="radio" value="3" v-model="question3.answer">
+      51%</p>
+    <p><input type="radio" value="4" v-model="question3.answer">
+      60%</p>
+  
+    <p v-if="question3.answer == '0'"></p>
+    <p v-if="question3.answer == '1'" class="false">Nope, it's greater than that.</p>
+    <p v-if="question3.answer == '2'" class="true">Yes! Since the four scenarios are equally likely, the average chance will be (16% + 40% + 40% + 100%) / 4, which is 49%. </p>
+    <p v-if="question3.answer == '3'" class="false">No, that is the average chance of <i>not</i> getting infected!</p>
+    <p v-if="question3.answer == '4'" class="false">Nope, it's less than that.</p>
+</div>
+
+
+
+
+<div class="exercise-box">
+  <h4>Exercise 4</h4>
+    <img src="../more-covid-math/images/finale-exercise4.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question4.answer">
+      <label v-if="question4.answer != '1'">[A: 36%], [B: 24%], [C: 24%], [D: 16%]</label>
+      <b v-if="question4.answer == '1'">[A: 36%], [B: 24%], [C: 24%], [D: 16%]</b></p>    
+    <p><input type="radio" value="2" v-model="question4.answer">
+      [A: 16%], [B: 24%], [C: 24%], [D: 36%]</p>
+    <p><input type="radio" value="3" v-model="question4.answer">
+      [A: 40%], [B: 24%], [C: 24%], [D: 60%]</p>
+    <p><input type="radio" value="4" v-model="question4.answer">
+      [A: 60%], [B: 24%], [C: 24%], [D: 40%]</p>
+
+  
+    <p v-if="question4.answer == '0'"></p>
+    <p v-if="question4.answer == '1'" class="true">Yes! Since 0.6 x 0.6 = 0.36, there's 36% chance both are wearing masks.  And since 0.4 x 0.4 = 0.16, there's 16% chance neither is wearing a mask.</p>
+    <p v-if="question4.answer == '2'" class="false">No, something is mixed up here.  Remember, there's a 60% chance a person is masked, so for two randomly selected people to be masked, the likelihood is 60% x 60%.</p>
+    <p v-if="question4.answer == '3'" class="false">No.  Remember, there's a 60% chance a person is masked, so for two randomly selected people to be masked, the likelihood is 60% x 60%.</p>
+    <p v-if="question4.answer == '4'" class="false">Incorrect.  Remember, there's a 60% chance a person is masked, so for two randomly selected people to be masked, the likelihood is 60% x 60%.</p>
+</div>
+
+
+
+<div class="exercise-box">
+  <h4>Exercise 5</h4>
+    <img src="../more-covid-math/images/finale-exercise5a.png" class="shrinkToFit" width="90%">
+    <img src="../more-covid-math/images/finale-exercise5b.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question5.answer">
+      <label v-if="question5.answer != '1'">41%</label>
+      <b v-if="question5.answer == '1'">41%</b></p>
+    <p><input type="radio" value="2" v-model="question5.answer">
+      49%</p>
+    <p><input type="radio" value="3" v-model="question5.answer">
+     61%</p>
+    <p><input type="radio" value="4" v-model="question5.answer">
+      69%</p>
+  
+    <p v-if="question5.answer == '0'"></p>
+    <p v-if="question5.answer == '1'" class="true">Yes!  That's the corret weighted average.</p>
+    <p v-if="question5.answer == '2'" class="false">Not quite.  See the hint above and try the calculation again.</p>
+    <p v-if="question5.answer == '3'" class="false">Nope.  See the hint above and try the calculation again.</p>
+    <p v-if="question5.answer == '4'" class="false">Too high!  See the hint above and try the calculation again.</p>
+</div>
+
+
+<div class="exercise-box">
+  <h4>Exercise 6</h4>
+    <img src="../more-covid-math/images/finale-exercise6.png" class="shrinkToFit" width="90%">
+<br>
+    <p><input type="radio" value="1" v-model="question6.answer">
+      <label v-if="question6.answer != '1'">0.82</label>
+      <b v-if="question6.answer == '1'">0.82</b></p>
+    <p><input type="radio" value="2" v-model="question6.answer">
+     0.92</p>
+    <p><input type="radio" value="3" v-model="question6.answer">
+     1.05</p>
+    <p><input type="radio" value="4" v-model="question6.answer">
+     1.20</p>
+  
+    <p v-if="question6.answer == '0'"></p>
+    <p v-if="question6.answer == '1'" class="true">Correct!  Since the chance of infection is lowered to 0.41, the new R-nought is 0.41 x 2 = 0.82.</p>
+    <p v-if="question6.answer == '2'" class="false">Nope, not quite.  In the previous question we found that the average chance of infection is 0.41, if 60% of people wear a 60% effective mask.</p>
+    <p v-if="question6.answer == '3'" class="false">Incorrect.  In the previous question we found that the average chance of infection is 0.41, if 60% of people wear a 60% effective mask.</p>
+    <p v-if="question6.answer == '4'" class="false">Sorry, but no.  In the previous question we found that the average chance of infection is 0.41, if 60% of people wear a 60% effective mask.</p>
+</div>
+
+<md>Congratulations!  I think you've worked out the plan we need!  Click below to return to the main menu.</md>
+
+<a href="../more-covid-math/index.html">
+<div class="exercise-box">
+    <img src="../more-covid-math/images/finale-exercise7.png" class="shrinkToFit" width="90%">
+</div></a>
+
+
+</div>
+
+<!-- here we define data accessible throughout the page -->
+<script>
+let data = {
+
+  aside1: {
+    expand: false
+  },
+
+  question1: {
+    answer: 0
+  },
+
+  question2: {
+    answer: 0
+  },
+
+  question3: {
+    answer: 0
+  },
+
+  question4: {
+    answer: 0
+  },
+
+  question5: {
+    answer: 0
+  },
+
+  question6: {
+    answer: 0
+  },
+
+  question7: {
+    answer: 0
+  },
+
+  question8: {
+    answer: 0
+  },
+};
+</script>
+<!-- vue-definitions.js runs vue.js and defines the components -->
+<script src="vue-definitions.js"></script>
+
+</body>
+</html>
