@@ -205,6 +205,10 @@ p {
   color: blue;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .button {
   background-color: #008CBA;
   border-radius: 8px;

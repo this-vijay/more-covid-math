@@ -25,7 +25,7 @@
 ### How we can bring this pandemic to an end with masks and social distancing!
 
 <div class="flex-container">
- <img src="../more-covid-math/images/banner.png" class="shrinkToFit" width="100%">
+ <img src="/images/banner.png" class="shrinkToFit" width="100%">
 </div>
 
 <hr>
@@ -50,26 +50,58 @@ You have an incoming video call from the Mayor.  Must be something important!
 </div>
 
 
+<!--
+<mcq label="Exercise 1" img="/images/mayor-exercise1.png" :choices="[
+    {
+      correct: false,
+      answer: `10 heads and 90 tails`,
+      response: `Sorry, but that's extremely unlikely to happen!`
+    },
+    {
+      correct: false,
+      answer: `25 heads and 75 tails`,
+      response: `Not quite -- there's a significantly more likely outcome!`
+    },
+    {
+      correct: true,
+      answer: `50 heads and 50 tails`,
+      response: `Yes! This is the most likely outcome of the one's listed.`
+    },
+    {
+      correct: false,
+      answer: `100 heads and 0 tails`,
+      response: `Yikes, that's a nearly impossible outcome!`
+    }
+  ]">
+-->
 
 <div class="exercise-box">
   <h4>Exercise 1</h4>
-    <img src="../more-covid-math/images/mayor-exercise1.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question1.answer">
-      10 heads and 90 tails</p>
-    <p><input type="radio" value="2" v-model="question1.answer">
-      25 heads and 75 tails</p>
-    <p><input type="radio" value="3" v-model="question1.answer">
-      <label v-if="question1.answer != '3'">50 heads and 50 tails</label>
-      <b v-if="question1.answer == '3'">50 heads and 50 tails</b></p>
-    <p><input type="radio" value="4" v-model="question1.answer">
-      100 heads and 0 tails</p>
-  
-    <p v-if="question1.answer == '0'"></p>
-    <p v-if="question1.answer == '1'" class="false">Sorry, but that's extremely unlikely to happen!</p>
-    <p v-if="question1.answer == '2'" class="false">Not quite -- there's a significantly more likely outcome!</p>
-    <p v-if="question1.answer == '3'" class="true">Yes! This is the most likely outcome of the one's listed.</p>
-    <p v-if="question1.answer == '4'" class="false">Yikes, that's a nearly impossible outcome!</p>
+    <img src="/images/mayor-exercise1.png" class="shrinkToFit" width="90%">
+
+    <mcq :choices="[
+        {
+          correct: false,
+          answer: `10 heads and 90 tails`,
+          response: `Sorry, but that's extremely unlikely to happen!`
+        },
+        {
+          correct: false,
+          answer: `25 heads and 75 tails`,
+          response: `Not quite -- there's a significantly more likely outcome!`
+        },
+        {
+          correct: true,
+          answer: `50 heads and 50 tails`,
+          response: `Yes! This is the most likely outcome of the one's listed.`
+        },
+        {
+          correct: false,
+          answer: `100 heads and 0 tails`,
+          response: `Yikes, that's a nearly impossible outcome!`
+        }
+      ]">
+
 </div>
 
 
@@ -87,8 +119,8 @@ You have an incoming video call from the Mayor.  Must be something important!
 
 <div class="exercise-box">
   <h4>Exercise 2</h4>
-    <img src="../more-covid-math/images/mayor-exercise2a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise2b-advanced.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise2a.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise2b-advanced.png" class="shrinkToFit" width="90%">
 <br>
     <p><input type="radio" value="1" v-model="question2.answer">
       8</p>
@@ -111,8 +143,8 @@ You have an incoming video call from the Mayor.  Must be something important!
 
 <div class="exercise-box">
   <h4>Exercise 3</h4>
-    <img src="../more-covid-math/images/mayor-exercise3a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise3b-advanced.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise3a.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise3b-advanced.png" class="shrinkToFit" width="90%">
 <br>
     <p><input type="radio" value="1" v-model="question3.answer">
       16</p>
@@ -135,8 +167,8 @@ You have an incoming video call from the Mayor.  Must be something important!
 
 <div class="exercise-box">
   <h4>Exercise 4</h4>
-    <img src="../more-covid-math/images/mayor-exercise4a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise4b.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise4a.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise4b.png" class="shrinkToFit" width="90%">
 <br>
     <p><input type="radio" value="1" v-model="question4.answer">
       0</p>
@@ -182,9 +214,9 @@ You have an incoming video call from the Mayor.  Must be something important!
 
 <div class="exercise-box">
   <h4>Exercise 5</h4>
-    <img src="../more-covid-math/images/mayor-exercise5a.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise5b.png" class="shrinkToFit" width="90%">
-    <img src="../more-covid-math/images/mayor-exercise5c.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise5a.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise5b.png" class="shrinkToFit" width="90%">
+    <img src="/images/mayor-exercise5c.png" class="shrinkToFit" width="90%">
 </div>
 
 
@@ -206,7 +238,7 @@ You have an incoming video call from the Mayor.  Must be something important!
 Let's try video calling the Coronavirus.  Click the map below when you're ready!</md>
 
 <div class="flex-container">
- <a href="../more-covid-math/coronavirus.html"><img src="../more-covid-math/images/map2.png" class="shrinkToFit" width="80%" style="border:2px solid grey; border-radius: 15px;"></a>
+ <a href="/coronavirus.html"><img src="/images/map2.png" class="shrinkToFit" width="80%" style="border:2px solid grey; border-radius: 15px;"></a>
 </div>
 
 

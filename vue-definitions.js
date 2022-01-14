@@ -82,6 +82,30 @@ Vue.component('md', {
 
 });
 
+// multiple choice question component
+
+Vue.component('mcq', {
+
+  props: ['label', 'img', 'choices'],
+
+  template: `
+  <div>
+    <p v-for="(choice, index) in choices" :class="(choice.correct && selected == index) ? 'bold' : ''"><input type="radio" v-model="selected" :value="index">{{choice.answer}}</p>
+    <p v-for="(choice, index) in choices" v-if="index == selected" :class="choice.correct ? 'true' : 'false'">{{choice.response}}</p>
+  </div>
+  `,
+
+  mounted() {
+  },
+
+  data: function() {
+    return {
+      selected: NaN
+    }
+  }
+
+})
+
 
 // custom p5 component
 
