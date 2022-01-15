@@ -84,19 +84,22 @@ Vue.component('md', {
 
 // multiple choice question component
 
+
 Vue.component('mcq', {
 
-  props: ['label', 'img', 'choices'],
+  props: ['label', 'img1', 'img2', 'choices'],
 
   template: `
-  <div>
+  <div class="exercise-box">
+    <h4>{{label}}</h4>
+    <img :src="img1" class="shrinkToFit" width="90%">
+    <img :src="img2" class="shrinkToFit" width="90%">
+    <br>
     <p v-for="(choice, index) in choices" :class="(choice.correct && selected == index) ? 'bold' : ''"><input type="radio" v-model="selected" :value="index">{{choice.answer}}</p>
     <p v-for="(choice, index) in choices" v-if="index == selected" :class="choice.correct ? 'true' : 'false'">{{choice.response}}</p>
   </div>
   `,
 
-  mounted() {
-  },
 
   data: function() {
     return {
