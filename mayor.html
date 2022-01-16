@@ -50,7 +50,7 @@ You have an incoming video call from the Mayor.  Must be something important!
 </div>
 
 
-<mcq label="Exercise 1" img1="./images/mayor-exercise1.png" :choices="[
+<mcq label="Exercise 1" palette="mayor" :images="[`./images/mayor-exercise1.png`]" :choices="[
     {
       correct: false,
       answer: `10 heads and 90 tails`,
@@ -85,7 +85,7 @@ You have an incoming video call from the Mayor.  Must be something important!
   </iframe>
 </div>
 
-<mcq label="Exercise 2" img1="./images/mayor-exercise2a.png" img2="./images/mayor-exercise2b-advanced.png" :choices="[
+<mcq label="Exercise 2" palette="mayor" :images="[`./images/mayor-exercise2a.png`, `./images/mayor-exercise2b-advanced.png`]" :choices="[
     {
       correct: false,
       answer: `8`,
@@ -110,52 +110,62 @@ You have an incoming video call from the Mayor.  Must be something important!
 </mcq>
 
 
-<div class="exercise-box">
-  <h4>Exercise 3</h4>
-    <img src="./images/mayor-exercise3a.png" class="shrinkToFit" width="90%">
-    <img src="./images/mayor-exercise3b-advanced.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question3.answer">
-      16</p>
-    <p><input type="radio" value="2" v-model="question3.answer">
-      27</p>
-    <p><input type="radio" value="3" v-model="question3.answer">
-      63</p>
-    <p><input type="radio" value="4" v-model="question3.answer">
-      <label v-if="question3.answer != '4'">81</label>
-      <b v-if="question3.answer == '4'">81</b></p>
-  
-    <p v-if="question3.answer == '0'"></p>
-    <p v-if="question3.answer == '1'" class="false">Nope.</p>
-    <p v-if="question3.answer == '2'" class="false">No, that's the number of infected people at level 3.</p>
-    <p v-if="question3.answer == '3'" class="false">No, that's not it!</p>
-    <p v-if="question3.answer == '4'" class="true">Correct, since 3 x 3 x 3 x 3 is 81.</p>
-</div>
+<mcq label="Exercise 3" palette="mayor" :images="[`./images/mayor-exercise3a.png`, `./images/mayor-exercise3b-advanced.png`]" :choices="[
+    {
+      correct: false,
+      answer: `16`,
+      response: `Nope.`
+    },
+    {
+      correct: false,
+      answer: `27`,
+      response: `No, that's the number of infected people at level 3.`
+    },
+    {
+      correct: false,
+      answer: `63`,
+      response: `No, that's not it!`
+    },
+    {
+      correct: true,
+      answer: `81`,
+      response: `Correct, since 3 x 3 x 3 x 3 is 81.`
+    }
+  ]">
+</mcq>
 
 
 
-<div class="exercise-box">
-  <h4>Exercise 4</h4>
-    <img src="./images/mayor-exercise4a.png" class="shrinkToFit" width="90%">
-    <img src="./images/mayor-exercise4b.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question4.answer">
-      0</p>
-    <p><input type="radio" value="2" v-model="question4.answer">
-      <label v-if="question4.answer != '2'">1</label>
-      <b v-if="question4.answer == '2'">1</b></p>
-    <p><input type="radio" value="3" v-model="question4.answer">
-      5</p>
-    <p><input type="radio" value="4" v-model="question4.answer">
-      6</p>
 
-  
-    <p v-if="question4.answer == '0'"></p>
-    <p v-if="question4.answer == '1'" class="false">Nope, we are not so lucky.</p>
-    <p v-if="question4.answer == '2'" class="true">Correct! At any level, just one new person will get infected.</p>
-    <p v-if="question4.answer == '3'" class="false">No, sorry!</p>
-    <p v-if="question4.answer == '4'" class="false">No, that's the total number of people that have been infected in levels 0 through 5.</p>
-</div>
+<mcq label="Exercise 4" palette="mayor" 
+:images="[
+`./images/mayor-exercise4a.png`, 
+`./images/mayor-exercise4b.png`
+]" 
+:choices="[
+    {
+      correct: false,
+      answer: `0`,
+      response: `Nope, we are not so lucky.`
+    },
+    {
+      correct: true,
+      answer: `1`,
+      response: `Correct! At any level, just one new person will get infected.`
+    },
+    {
+      correct: false,
+      answer: `5`,
+      response: `No, sorry!`
+    },
+    {
+      correct: false,
+      answer: `6`,
+      response: `No, that's the total number of people that have been infected in levels 0 through 5.`
+    }
+  ]">
+</mcq>
+
 
 
 
@@ -181,12 +191,9 @@ You have an incoming video call from the Mayor.  Must be something important!
   </iframe>
 </div>
 
-<div class="exercise-box">
-  <h4>Exercise 5</h4>
-    <img src="./images/mayor-exercise5a.png" class="shrinkToFit" width="90%">
-    <img src="./images/mayor-exercise5b.png" class="shrinkToFit" width="90%">
-    <img src="./images/mayor-exercise5c.png" class="shrinkToFit" width="90%">
-</div>
+
+<mcq label="Exercise 5" palette="mayor" :images="[`./images/mayor-exercise5a.png`, `./images/mayor-exercise5b.png`, `./images/mayor-exercise5c.png`]">
+</mcq>
 
 
 
@@ -220,22 +227,6 @@ let data = {
 
   aside1: {
     expand: false
-  },
-
-  question1: {
-    answer: 0
-  },
-
-  question2: {
-    answer: 0
-  },
-
-  question3: {
-    answer: 0
-  },
-
-  question4: {
-    answer: 0
   },
 };
 </script>

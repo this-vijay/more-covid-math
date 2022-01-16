@@ -88,7 +88,7 @@ aside {
 }
 
 .exercise-box {
-  background-color: palegoldenrod; 
+  background-color: palegoldenrod;
   padding: 20px; 
   margin-top: 30px; 
   margin-bottom: 30px;  
@@ -96,6 +96,27 @@ aside {
   text-align: center;
   box-shadow: 5px 10px #888888;
 }
+
+.mayor{
+  background-color: palegoldenrod;
+  box-shadow: #888888;
+}
+
+.coronavirus{
+  background-color: #e6bfb0;
+  box-shadow: #97a292;
+}
+
+.beekeeper{
+  background-color: #9FD9E5;
+  box-shadow: #BBA996;
+}
+
+.fisherwoman{
+  background-color: #9AC281;
+  box-shadow: #BBA996;
+}
+
 
 .exercise-box2 {
   background-color: #e6bfb0; 

@@ -87,13 +87,12 @@ Vue.component('md', {
 
 Vue.component('mcq', {
 
-  props: ['label', 'img1', 'img2', 'choices'],
+  props: ['label', 'palette', 'images', 'choices'],
 
   template: `
-  <div class="exercise-box">
+  <div :class="['exercise-box', palette]">
     <h4>{{label}}</h4>
-    <img :src="img1" class="shrinkToFit" width="90%">
-    <img :src="img2" class="shrinkToFit" width="90%">
+    <img v-for="image in images" :src="image" class="shrinkToFit" width="90%" />
     <br>
     <p v-for="(choice, index) in choices" :class="(choice.correct && selected == index) ? 'bold' : ''"><input type="radio" v-model="selected" :value="index">{{choice.answer}}</p>
     <p v-for="(choice, index) in choices" v-if="index == selected" :class="choice.correct ? 'true' : 'false'">{{choice.response}}</p>
@@ -109,6 +108,39 @@ Vue.component('mcq', {
 
 })
 
+// pictorial multiple choice question component
+
+
+Vue.component('mcq-pictorial', {
+
+  props: ['label', 'palette', 'images', 'choices'],
+
+  template: `
+  <div :class="['exercise-box', palette]">
+    <h4>{{label}}</h4>
+    <img v-for="image in images" :src="image" class="shrinkToFit" width="90%" />
+    <br>
+
+    <div class="flex-container">
+    <figure v-for="(choice, index) in choices">
+    <img :src="choice.picture" class="shrinkToFit" width=200>
+    <figcaption :class="['answer', (choice.correct && selected == index) ? 'bold' : '']">
+    <input type="radio" v-model="selected" :value="index">{{choice.answer}}
+    </figcaption>
+    </figure>
+    </div>    
+    <p v-for="(choice, index) in choices" v-if="index == selected" :class="choice.correct ? 'true' : 'false'">{{choice.response}}</p>
+  </div>
+  `,
+
+
+  data: function() {
+    return {
+      selected: NaN
+    }
+  }
+
+})
 
 // custom p5 component
 

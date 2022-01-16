@@ -61,34 +61,35 @@ Let's call up this Beekeeper!
   </iframe>
 </div>
 
-<div class="exercise-box3">
-  <h4>Exercise 1</h4>
-    <img src="./images/beekeeper-exercise1.png" class="shrinkToFit" width="90%">
-<br>
 
-<div class="flex-container">
-    <figure><img src="./images/coin-square.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="1" v-model="question1.answer">Square</figcaption></figure>
+<mcq-pictorial label="Exercise 1" palette="beekeeper" :images="[`./images/beekeeper-exercise1.png`]" :choices="[
+    {
+      correct: false,
+      answer: `Square`,
+      picture: `./images/coin-square.png`, 
+      response: `Not quite, but good guess!  Arranging the coins in a square is *not* the best way to minimize the empty space between them.`
+    },
+    {
+      correct: false,
+      answer: `Triangle`,
+      picture: `./images/coin-triangle.png`, 
+      response: `Nope!  There are better ways to arrange your coins!`
+    },
+    {
+      correct: true,
+      answer: `Rhombus`,
+      picture: `./images/coin-rhombus.png`, 
+      response: `Good job!  That's the arrangement with the least empty space!`
+    },
+    {
+      correct: false,
+      answer: `Trapezoid`,
+      picture: `./images/coin-trapezoid.png`, 
+      response: `I'm impressed! I've never managed to get a trapezoid.  But sorry, that's not the tightest packing of coins.`
+    }
+  ]">
+</mcq-pictorial>
 
-    <figure><img src="./images/coin-triangle.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="2" v-model="question1.answer">Triangle</figcaption></figure>
-
-
-    <figure><img src="./images/coin-rhombus.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="3" v-model="question1.answer"><label v-if="question1.answer != '3'">Rhombus</label>
-      <b v-if="question1.answer == '3'">Rhombus</b></figcaption></figure>
-
-
-    <figure><img src="./images/coin-trapezoid.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="4" v-model="question1.answer">Trapezoid</figcaption></figure>
-</div>
-
-    <p v-if="question1.answer == '0'"></p>
-    <p v-if="question1.answer == '1'" class="false">Not quite, but good guess!  Arranging the coins in a square is <i>not</i> the best way to minimize the empty space between them.</p>
-    <p v-if="question1.answer == '2'" class="false">Nope!  There are better ways to arrange your coins!</p>
-    <p v-if="question1.answer == '3'" class="true">Good job!  That's the arrangement with the least empty space!</p>
-    <p v-if="question1.answer == '4'" class="false">I'm impressed! I've never managed to get a trapezoid.  But sorry, that's not the tightest packing of coins.</p>
-</div>
 
 
 
@@ -104,33 +105,34 @@ Let's call up this Beekeeper!
 </div>
 
 
-<div class="exercise-box3">
-  <h4>Exercise 2</h4>
-    <img src="./images/beekeeper-exercise2a.png" class="shrinkToFit" width="90%">
-    <img src="./images/beekeeper-exercise2b.png" class="shrinkToFit" width="90%">
-<br>
+<mcq-pictorial label="Exercise 2" palette="beekeeper" :images="[`./images/beekeeper-exercise2a.png`, `./images/beekeeper-exercise2b.png`]" :choices="[
+    {
+      correct: false,
+      answer: `Arrangement A`,
+      picture: `./images/coin-arrangement-A.png`, 
+      response: `This arrangement contains 2x2 squares, which are no good for minimizing empty space!`
+    },
+    {
+      correct: true,
+      answer: `Arrangement B`,
+      picture: `./images/coin-arrangement-B.png`, 
+      response: `Good job!  That's the arrangement with the least empty space!`
+    },
+    {
+      correct: false,
+      answer: `Arrangement C`,
+      picture: `./images/coin-arrangement-C.png`, 
+      response: `No, I see more than one 2x2 square, which is not great for minimizing empty space!`
+    },
+    {
+      correct: false,
+      answer: `Arrangement D`,
+      picture: `./images/coin-arrangement-D.png`, 
+      response: `Sorry, there's a 2x2 square, which means there too much empty space!`
+    }
+  ]">
+</mcq-pictorial>
 
-<div class="flex-container">
-    <figure><img src="./images/coin-arrangement-A.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="1" v-model="question2.answer">Arrangement A</figcaption></figure>
-
-      <figure><img src="./images/coin-arrangement-B.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="2" v-model="question2.answer"><label v-if="question2.answer != '2'">Arrangement B</label>
-      <b v-if="question2.answer == '2'">Arrangement B</b></figcaption></figure>
-
-    <figure><img src="./images/coin-arrangement-C.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="3" v-model="question2.answer">Arrangement C</figcaption></figure>
-
-    <figure><img src="./images/coin-arrangement-D.png" class="shrinkToFit" width=200>
-      <figcaption class="answer"><input type="radio" value="4" v-model="question2.answer">Arrangement D</figcaption></figure>
-</div>
-
-    <p v-if="question2.answer == '0'"></p>
-    <p v-if="question2.answer == '1'" class="false">This arrangement contains 2x2 squares, which are no good for minimizing empty space!</p>
-    <p v-if="question2.answer == '2'" class="true">Good job!  That's the arrangement with the least empty space!</p>
-    <p v-if="question2.answer == '3'" class="false">I see more than one 2x2 square, which is not great for minimizing empty space!</p>
-    <p v-if="question2.answer == '4'" class="false">Sorry, there's a 2x2 square, which means there too much empty space!</p>
-</div>
 
 
 <md>But how big are the circles?</md>
@@ -145,26 +147,30 @@ Let's call up this Beekeeper!
   </iframe>
 </div>
 
-<div class="exercise-box3">
-  <h4>Exercise 3</h4>
-    <img src="./images/beekeeper-exercise3.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question3.answer">
-      <label v-if="question3.answer != '1'">1 meter</label>
-      <b v-if="question3.answer == '1'">1 meters</b></p>
-    <p><input type="radio" value="2" v-model="question3.answer">
-      2 meters</p>
-    <p><input type="radio" value="3" v-model="question3.answer">
-      3 meters</p>
-    <p><input type="radio" value="4" v-model="question3.answer">
-      4 meters</p>
-  
-    <p v-if="question3.answer == '0'"></p>
-    <p v-if="question3.answer == '1'" class="true">Yes!  If the circles have radius 1 meter, than any two circle centers will be at least 2 meters apart.</p>
-    <p v-if="question3.answer == '2'" class="false">No, that's more than we need.</p>
-    <p v-if="question3.answer == '3'" class="false">No, that's more than we need.</p>
-    <p v-if="question3.answer == '4'" class="false">Yikes! That's much more than we need.</p>
-</div>
+
+<mcq label="Exercise 3" palette="beekeeper" :images="[`./images/beekeeper-exercise3.png`]" :choices="[
+    {
+      correct: true,
+      answer: `1 meter`,
+      response: `Yes!  If the circles have radius 1 meter, than any two circle centers will be at least 2 meters apart.`
+    },
+    {
+      correct: false,
+      answer: `2 meters`,
+      response: `No, that's more than we need.`
+    },
+    {
+      correct: false,
+      answer: `3 meters`,
+      response: `No, that's more than we need.`
+    },
+    {
+      correct: false,
+      answer: `4 meters`,
+      response: `Yikes! That's much more than we need.`
+    }
+  ]">
+</mcq>
 
 
 
@@ -182,10 +188,10 @@ Let's call up this Beekeeper!
 
 
 
-<div class="exercise-box3">
-  <h4>Exercise 4</h4>
-    <img src="./images/beekeeper-exercise4.png" class="shrinkToFit" width="90%">
-</div>
+<mcq label="Exercise 4" palette="beekeeper" :images="[`./images/beekeeper-exercise4.png`]">
+</mcq>
+
+
 
 
 <md>Let's complete our honeybee blueprint for social distancing.</md>
@@ -199,48 +205,55 @@ Let's call up this Beekeeper!
   </iframe>
 </div>
 
+<mcq label="Exercise 5" palette="beekeeper" :images="[`./images/beekeeper-exercise5.png`]" :choices="[
+    {
+      correct: false,
+      answer: `16`,
+      response: `Try counting the coins.  There are way more in the grid!`
+    },
+    {
+      correct: false,
+      answer: `32`,
+      response: `Too low!  Looking at the picture might help.`
+    },
+    {
+      correct: true,
+      answer: `64`,
+      response: `Yes! It's an 8 by 8 grid, so there are 8x8 = 64 coins.`
+    },
+    {
+      correct: false,
+      answer: `80`,
+      response: `Hmmm, how did you get that?  It's too much.  Looking at the picture might help.`
+    }
+  ]">
+</mcq>
 
-<div class="exercise-box3">
-  <h4>Exercise 5</h4>
-    <img src="./images/beekeeper-exercise5.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question5.answer">
-      16</p>
-    <p><input type="radio" value="2" v-model="question5.answer">
-     32</p>
-    <p><input type="radio" value="3" v-model="question5.answer">
-      <label v-if="question5.answer != '3'">64</label>
-      <b v-if="question5.answer == '3'">64</b></p>
-    <p><input type="radio" value="4" v-model="question5.answer">
-      80</p>
-  
-    <p v-if="question5.answer == '0'"></p>
-    <p v-if="question5.answer == '1'" class="false">Try counting the coins.  There are way more in the grid!</p>
-    <p v-if="question5.answer == '2'" class="false">Too low!  Looking at the picture might help.</p>
-    <p v-if="question5.answer == '3'" class="true">Yes! It's an 8 by 8 grid, so there are 8x8 = 64 coins.</p>
-    <p v-if="question5.answer == '4'" class="false">Hmmm, how did you get that?  It's too much.  Looking at the picture might help.</p>
-</div>
 
-<div class="exercise-box3">
-  <h4>Exercise 6</h4>
-    <img src="./images/beekeeper-exercise6.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question6.answer">
-     60</p>
-    <p><input type="radio" value="2" v-model="question6.answer">
-     64</p>
-    <p><input type="radio" value="3" v-model="question6.answer">
-     66</p>
-    <p><input type="radio" value="4" v-model="question6.answer">
-      <label v-if="question6.answer != '4'">68</label>
-      <b v-if="question6.answer == '4'">68</b></p>
-  
-    <p v-if="question6.answer == '0'"></p>
-    <p v-if="question6.answer == '1'" class="false">Not at all! That's way too low!</p>
-    <p v-if="question6.answer == '2'" class="false">Nope.  It's more than that, believe it or not!</p>
-    <p v-if="question6.answer == '3'" class="false">No, try counting more carefully!</p>
-    <p v-if="question6.answer == '4'" class="true">Yes!  Amazing, isn't it?</p>
-</div>
+<mcq label="Exercise 6" palette="beekeeper" :images="[`./images/beekeeper-exercise6.png`]" :choices="[
+    {
+      correct: false,
+      answer: `60`,
+      response: `Not at all! That's way too low!`
+    },
+    {
+      correct: false,
+      answer: `64`,
+      response: `Nope.  It's more than that, believe it or not!`
+    },
+    {
+      correct: false,
+      answer: `66`,
+      response: `No, try counting more carefully!`
+    },
+    {
+      correct: true,
+      answer: `68`,
+      response: `Yes!  Amazing, isn't it?`
+    }
+  ]">
+</mcq>
+
 
 
 
@@ -255,47 +268,56 @@ Let's call up this Beekeeper!
   </iframe>
 </div>
 
-<div class="exercise-box3">
-  <h4>Exercise 7</h4>
-    <img src="./images/beekeeper-exercise7.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question7.answer">
-      pi/6 = 52%</p>
-    <p><input type="radio" value="2" v-model="question7.answer">
-     2/pi = 64%</p>
-    <p><input type="radio" value="3" v-model="question7.answer">
-      <label v-if="question7.answer != '3'">pi/4 = 79%</label>
-      <b v-if="question7.answer == '3'">pi/4 = 79%</b></p>
-    <p><input type="radio" value="4" v-model="question7.answer">
-      3/pi = 95%</p>
-  
-    <p v-if="question7.answer == '0'"></p>
-    <p v-if="question7.answer == '1'" class="false">Not quite.  Remember, you need to divide the area taken up by coin pieces by the total area.</p>
-    <p v-if="question7.answer == '2'" class="false">Sorry.  Remember, you need to divide the area taken up by coin pieces by the total area.</p>
-    <p v-if="question7.answer == '3'" class="true">Correct!  The packing density is the coin-filled area divided by the total area.</p>
-    <p v-if="question7.answer == '4'" class="false">Nope.  Remember, you need to divide the area taken up by coin pieces by the total area.</p>
-</div>
 
-<div class="exercise-box3">
-  <h4>Exercise 8</h4>
-    <img src="./images/beekeeper-exercise8.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question8.answer">
-      pi/[4sqrt(3)] = 45%</p>
-    <p><input type="radio" value="2" v-model="question8.answer">
-     sqrt(3)/pi = 55%</p>
-    <p><input type="radio" value="3" v-model="question8.answer">
-      <label v-if="question8.answer != '3'">pi/[2sqrt(3)] = 91%</label>
-      <b v-if="question8.answer == '3'">pi/[2sqrt(3)] = 91%</b></p>
-    <p><input type="radio" value="4" v-model="question8.answer">
-      2sqrt(3)/pi = 110%</p>
-  
-    <p v-if="question8.answer == '0'"></p>
-    <p v-if="question8.answer == '1'" class="false">Incorrect.  Try calculating the total amount of area in the rhombus taken up by coins. </p>
-    <p v-if="question8.answer == '2'" class="false">Nope.  Try calculating the total amount of area in the rhombus taken up by coins.</p>
-    <p v-if="question8.answer == '3'" class="true">Wonderful!  The packing density is the coin-filled area divided by the total area.</p>
-    <p v-if="question8.answer == '4'" class="false">Hmmm, that's supicious. How can the packing density exceed 100%?</p>
-</div>
+<mcq label="Exercise 7" palette="beekeeper" :images="[`./images/beekeeper-exercise7.png`]" :choices="[
+    {
+      correct: false,
+      answer: `pi/6 = 52%`,
+      response: `Not quite.  Remember, you need to divide the area taken up by coin pieces by the total area.`
+    },
+    {
+      correct: false,
+      answer: `2/pi = 64%`,
+      response: `Sorry.  Remember, you need to divide the area taken up by coin pieces by the total area.`
+    },
+    {
+      correct: true,
+      answer: `pi/4 = 79%`,
+      response: `Correct!  The packing density is the coin-filled area divided by the total area.`
+    },
+    {
+      correct: false,
+      answer: `3/pi = 95%`,
+      response: `Nope.  Remember, you need to divide the area taken up by coin pieces by the total area.`
+    }
+  ]">
+</mcq>
+
+
+<mcq label="Exercise 8" palette="beekeeper" :images="[`./images/beekeeper-exercise8.png`]" :choices="[
+    {
+      correct: false,
+      answer: `pi/[4sqrt(3)] = 45%`,
+      response: `Incorrect.  Try calculating the total amount of area in the rhombus taken up by coins.`
+    },
+    {
+      correct: false,
+      answer: `sqrt(3)/pi = 55%`,
+      response: `Nope.  Try calculating the total amount of area in the rhombus taken up by coins.`
+    },
+    {
+      correct: true,
+      answer: `pi/[2sqrt(3)] = 91%`,
+      response: `Wonderful!  The packing density is the coin-filled area divided by the total area.`
+    },
+    {
+      correct: false,
+      answer: `2sqrt(3)/pi = 110%`,
+      response: `Hmmm, that's supicious. How can the packing density exceed 100%?`
+    }
+  ]">
+</mcq>
+
 
 
 <div class="flex-container">
@@ -320,37 +342,6 @@ let data = {
     expand: false
   },
 
-  question1: {
-    answer: 0
-  },
-
-  question2: {
-    answer: 0
-  },
-
-  question3: {
-    answer: 0
-  },
-
-  question4: {
-    answer: 0
-  },
-
-  question5: {
-    answer: 0
-  },
-
-  question6: {
-    answer: 0
-  },
-
-  question7: {
-    answer: 0
-  },
-
-  question8: {
-    answer: 0
-  },
 };
 </script>
 <!-- vue-definitions.js runs vue.js and defines the components -->

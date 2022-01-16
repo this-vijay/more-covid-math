@@ -50,53 +50,54 @@ Let's contact the Fisherwoman!
 
 
 
+<mcq label="Exercise 1" palette="fisherwoman" :images="[`./images/fisher-exercise1.png`]" :choices="[
+    {
+      correct: false,
+      answer: `25`,
+      response: `I can count on catching more than that!`
+    },
+    {
+      correct: false,
+      answer: `50`,
+      response: `That's too low.`
+    },
+    {
+      correct: true,
+      answer: `100`,
+      response: `Yes! I can expect to catch around 100 fish in my net, out of the 200 my net comes in contact with.`
+    },
+    {
+      correct: false,
+      answer: `150`,
+      response: `That's too optimistic.`
+    }
+  ]">
+</mcq>
 
 
-<div class="exercise-box4">
-  <h4>Exercise 1</h4>
-    <img src="./images/fisher-exercise1.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question1.answer">
-      25</p>
-    <p><input type="radio" value="2" v-model="question1.answer">
-      50</p>
-    <p><input type="radio" value="3" v-model="question1.answer">
-      <label v-if="question1.answer != '3'">100</label>
-      <b v-if="question1.answer == '3'">100</b></p>
-    <p><input type="radio" value="4" v-model="question1.answer">
-      150</p>
-  
-    <p v-if="question1.answer == '0'"></p>
-    <p v-if="question1.answer == '1'" class="false">I can count on catching more than that!</p>
-    <p v-if="question1.answer == '2'" class="false">That's too low.</p>
-    <p v-if="question1.answer == '3'" class="true">Yes! I can expect to catch around 100 fish in my net, out of the 200 my net comes in contact with.</p>
-    <p v-if="question1.answer == '4'" class="false">That's too optimistic.</p>
-</div>
-
-
-
-
-
-<div class="exercise-box4">
-  <h4>Exercise 2</h4>
-    <img src="./images/fisher-exercise2.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question2.answer">
-      50</p>
-    <p><input type="radio" value="2" v-model="question2.answer">
-      100</p>
-    <p><input type="radio" value="3" v-model="question2.answer">
-      <label v-if="question2.answer != '3'">150</label>
-      <b v-if="question2.answer == '3'">150</b></p>
-    <p><input type="radio" value="4" v-model="question2.answer">
-      200</p>
-  
-    <p v-if="question2.answer == '0'"></p>
-    <p v-if="question2.answer == '1'" class="false">No, that's much too low.</p>
-    <p v-if="question2.answer == '2'" class="false">With my old 50% net that would be correct, but remember, this my new net, with a 75% catch rate! </p>
-    <p v-if="question2.answer == '3'" class="true">Yes! 75% of 200 is 150, so I can expect to catch around that number of fish.</p>
-    <p v-if="question2.answer == '4'" class="false">Nope, that is far too many!</p>
-</div>
+<mcq label="Exercise 2" palette="fisherwoman" :images="[`./images/fisher-exercise2.png`]" :choices="[
+    {
+      correct: false,
+      answer: `50`,
+      response: `No, that's much too low.`
+    },
+    {
+      correct: false,
+      answer: `100`,
+      response: `With my old 50% net that would be correct, but remember, this is my new net, with a 75% catch rate!`
+    },
+    {
+      correct: true,
+      answer: `150`,
+      response: `Yes! 75% of 200 is 150, so I can expect to catch around that number of fish.`
+    },
+    {
+      correct: false,
+      answer: `200`,
+      response: `Nope, that is far too many!`
+    }
+  ]">
+</mcq>
 
 
 
@@ -126,27 +127,29 @@ Let's contact the Fisherwoman!
   </iframe>
 </div>
 
-<div class="exercise-box4">
-  <h4>Exercise 3</h4>
-    <img src="./images/fisher-exercise3.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question3.answer">
-      1 million</p>
-    <p><input type="radio" value="2" v-model="question3.answer">
-      <label v-if="question3.answer != '2'">5 million</label>
-      <b v-if="question3.answer == '2'">5 million</b></p>
-    <p><input type="radio" value="3" v-model="question3.answer">
-      50 million</p>
-    <p><input type="radio" value="4" v-model="question3.answer">
-      95 million</p>
-  
-    <p v-if="question3.answer == '0'"></p>
-    <p v-if="question3.answer == '1'" class="false">No, even an N95 mask is not that effective.</p>
-    <p v-if="question3.answer == '2'" class="true">Yes!  The mask will trap 95 million viruses, and only 5 million will make it through to the Carpenter.</p>
-    <p v-if="question3.answer == '3'" class="false">No, an N95 is much better than that.  A simple cloth mask on the other hand might let 50% of the viruses through.</p>
-    <p v-if="question3.answer == '4'" class="false">Yikes! That's a lot of viruses getting through the mask.  An <i>N5 mask</i> might trap only 5% of the viruses, but thankfully that mask doesn't exist!  </p>
-</div>
-
+<mcq label="Exercise 3" palette="fisherwoman" :images="[`./images/fisher-exercise3.png`]" :choices="[
+    {
+      correct: false,
+      answer: `1 million`,
+      response: `No, even an N95 mask is not that effective.`
+    },
+    {
+      correct: true,
+      answer: `5 million`,
+      response: `Yes!  The mask will trap 95 million viruses, and only 5 million will make it through to the Carpenter.`
+    },
+    {
+      correct: false,
+      answer: `50 million`,
+      response: `No, an N95 is much better than that.  A simple cloth mask on the other hand might let 50% of the viruses through.`
+    },
+    {
+      correct: false,
+      answer: `95 million`,
+      response: `Yikes! That's a lot of viruses getting through the mask.  An *N5 mask* might trap only 5% of the viruses, but thankfully that mask doesn't exist!`
+    }
+  ]">
+</mcq>
 
 
 
@@ -162,30 +165,30 @@ Let's contact the Fisherwoman!
 </div>
 
 
+<mcq label="Exercise 4" palette="fisherwoman" :images="[`./images/fisher-exercise4a.png`, `./images/fisher-exercise4b.png`]" :choices="[
+    {
+      correct: true,
+      answer: `16 million`,
+      response: `Yes! 40 percent of 40 percent is 16 percent!`
+    },
+    {
+      correct: false,
+      answer: `36 million`,
+      response: `Nope, that's too many!`
+    },
+    {
+      correct: false,
+      answer: `40 million`,
+      response: `No, that's if only one person is wearing a mask.`
+    },
+    {
+      correct: false,
+      answer: `60 million`,
+      response: `No no, that's the total number of viruses that get trapped in the first mask.  But how many make it through both masks?`
+    }
+  ]">
+</mcq>
 
-
-<div class="exercise-box4">
-  <h4>Exercise 4</h4>
-    <img src="./images/fisher-exercise4a.png" class="shrinkToFit" width="90%">
-    <img src="./images/fisher-exercise4b.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question4.answer">
-      <label v-if="question4.answer != '1'">16 million</label>
-      <b v-if="question4.answer == '1'">16 million</b></p>    
-    <p><input type="radio" value="2" v-model="question4.answer">
-      36 million</p>
-    <p><input type="radio" value="3" v-model="question4.answer">
-      40 million</p>
-    <p><input type="radio" value="4" v-model="question4.answer">
-      60 million</p>
-
-  
-    <p v-if="question4.answer == '0'"></p>
-    <p v-if="question4.answer == '1'" class="true">Yes! 40 percent of 40 percent is 16 percent!</p>
-    <p v-if="question4.answer == '2'" class="false">Nope, that's too many!</p>
-    <p v-if="question4.answer == '3'" class="false">No, that's if only one person is wearing a mask.</p>
-    <p v-if="question4.answer == '4'" class="false">No no, that's the total number of viruses that get trapped in the first mask.  But how many make it through both masks?</p>
-</div>
 
 
 
@@ -200,28 +203,29 @@ Let's contact the Fisherwoman!
   </iframe>
 </div>
 
-
-<div class="exercise-box4">
-  <h4>Exercise 5</h4>
-    <img src="./images/fisher-exercise5a.png" class="shrinkToFit" width="90%">
-    <img src="./images/fisher-exercise5b.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question5.answer">
-      0.16</p>
-    <p><input type="radio" value="2" v-model="question5.answer">
-      <label v-if="question5.answer != '2'">0.48</label>
-      <b v-if="question5.answer == '2'">0.48</b></p>
-    <p><input type="radio" value="3" v-model="question5.answer">
-     1.35</p>
-    <p><input type="radio" value="4" v-model="question5.answer">
-      1.80</p>
-  
-    <p v-if="question5.answer == '0'"></p>
-    <p v-if="question5.answer == '1'" class="false">No, that's the factor R-nought will be multiplied by.</p>
-    <p v-if="question5.answer == '2'" class="true">Yes!  The new R-nought will be 0.16 x 3 = 0.48.</p>
-    <p v-if="question5.answer == '3'" class="false">Nope, we'll do better than that.</p>
-    <p v-if="question5.answer == '4'" class="false">No - thankfully we will lower R-nought much more.</p>
-</div>
+<mcq label="Exercise 5" palette="fisherwoman" :images="[`./images/fisher-exercise5a.png`, `./images/fisher-exercise5b.png`]" :choices="[
+    {
+      correct: false,
+      answer: `0.16`,
+      response: `No, that's the factor R-nought will be multiplied by.`
+    },
+    {
+      correct: true,
+      answer: `0.48`,
+      response: `Yes!  The new R-nought will be 0.16 x 3 = 0.48.`
+    },
+    {
+      correct: false,
+      answer: `1.35`,
+      response: `Nope, we'll do better than that.`
+    },
+    {
+      correct: false,
+      answer: `1.80`,
+      response: `No - thankfully we will lower R-nought much more.`
+    }
+  ]">
+</mcq>
 
 
 
@@ -244,37 +248,6 @@ let data = {
     expand: false
   },
 
-  question1: {
-    answer: 0
-  },
-
-  question2: {
-    answer: 0
-  },
-
-  question3: {
-    answer: 0
-  },
-
-  question4: {
-    answer: 0
-  },
-
-  question5: {
-    answer: 0
-  },
-
-  question6: {
-    answer: 0
-  },
-
-  question7: {
-    answer: 0
-  },
-
-  question8: {
-    answer: 0
-  },
 };
 </script>
 <!-- vue-definitions.js runs vue.js and defines the components -->

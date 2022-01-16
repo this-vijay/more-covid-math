@@ -60,26 +60,31 @@ Unbelievable! The Coronavirus is actually answering our video call.  Okay, here 
   </iframe>
 </div>
 
-<div class="exercise-box2">
-  <h4>Exercise 1</h4>
-    <img src="./images/corona-exercise1.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question1.answer">
-      2</p>
-    <p><input type="radio" value="2" v-model="question1.answer">
-      <label v-if="question1.answer != '2'">3</label>
-      <b v-if="question1.answer == '2'">3</b></p>
-    <p><input type="radio" value="3" v-model="question1.answer">
-      4</p>
-    <p><input type="radio" value="4" v-model="question1.answer">
-      6</p>
-  
-    <p v-if="question1.answer == '0'"></p>
-    <p v-if="question1.answer == '1'" class="false">Not quite.  Although 2 branches is quite possible, there is an even more likely number.</p>
-    <p v-if="question1.answer == '2'" class="true">Correct!  Since 3 is 50% of 6, that is the most likely number of branches.  But remember, with numbers this small, Beatrice could realistically have anywhere from 0 to 6 branches.</p>
-    <p v-if="question1.answer == '3'" class="false">Not quite.  Although 4 branches is very possible, there is an even more likely number.</p>
-    <p v-if="question1.answer == '4'" class="false">Not quite.  Although 6 branches is possible, there is a much more likely number.</p>
-</div>
+
+<mcq label="Exercise 1" palette="coronavirus" :images="[`./images/corona-exercise1.png`]" :choices="[
+    {
+      correct: false,
+      answer: `2`,
+      response: `Not quite.  Although 2 branches is quite possible, there is an even more likely number.`
+    },
+    {
+      correct: true,
+      answer: `3`,
+      response: `Correct!  Since 3 is 50% of 6, that is the most likely number of branches.  But remember, with numbers this small, Beatrice could realistically have anywhere from 0 to 6 branches.`
+    },
+    {
+      correct: false,
+      answer: `4`,
+      response: `Not quite.  Although 4 branches is very possible, there is an even more likely number.`
+    },
+    {
+      correct: false,
+      answer: `6`,
+      response: `Not quite.  Although 6 branches is possible, there is a much more likely number.`
+    }
+  ]">
+</mcq>
+
 
 
 <md>Okay, here's what we've been waiting for: her strategies for spreading faster!</md>
@@ -93,49 +98,57 @@ Unbelievable! The Coronavirus is actually answering our video call.  Okay, here 
   </iframe>
 </div>
 
+<mcq label="Exercise 2" palette="coronavirus" :images="[`./images/corona-exercise2.png`]" :choices="[
+    {
+      correct: false,
+      answer: `Keeping two meters distance in public.`,
+      response: `Sorry, but by keeping a physical distance, she will have *fewer* close encounters, which means fewer chances to spread the infection.`
+    },
+    {
+      correct: false,
+      answer: `Drinking lots of water.`,
+      response: `No, sorry. If anything, staying hydrated is good for her immune system.`
+    },
+    {
+      correct: true,
+      answer: `Never wearing a face mask.`,
+      response: `Yes! Without a face mask, there will be a higher chance of infection in each meeting Beatrice has!`
+    },
+    {
+      correct: false,
+      answer: `Playing violin.`,
+      response: `No no, it's quite the opposite.  Whenever she plays violin people run away screaming!`
+    }
+  ]">
+</mcq>
 
-<div class="exercise-box2">
-  <h4>Exercise 2</h4>
-    <img src="./images/corona-exercise2.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question2.answer">
-      Keeping two meters distance in public.</p>
-    <p><input type="radio" value="2" v-model="question2.answer">
-      Drinking lots of water.</p>
-    <p><input type="radio" value="3" v-model="question2.answer">
-      <label v-if="question2.answer != '3'">Never wearing a face mask.</label>
-      <b v-if="question2.answer == '3'">Never wearing a face mask.</b></p>
-    <p><input type="radio" value="4" v-model="question2.answer">
-      Playing violin.</p>
-  
-    <p v-if="question2.answer == '0'"></p>
-    <p v-if="question2.answer == '1'" class="false">Sorry, but by keeping a physical distance, she will have <i>fewer</i> close encounters, which means fewer chances to spread the infection.</p>
-    <p v-if="question2.answer == '2'" class="false">No, sorry. If anything, staying hydrated is good for her immune system.</p>
-    <p v-if="question2.answer == '3'" class="true">Yes! Without a face mask, there will be a higher chance of infection in each meeting Beatrice has!</p>
-    <p v-if="question2.answer == '4'" class="false">No no, it's quite the opposite.  Whenever she plays violin people run away screaming!</p>
-</div>
 
 
-<div class="exercise-box2">
-  <h4>Exercise 3</h4>
-    <img src="./images/corona-exercise3.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question3.answer">
-      Having a big birthday party at home with lots of guests.</p>
-    <p><input type="radio" value="2" v-model="question3.answer">
-      Wearing yellow clothing.</p>
-    <p><input type="radio" value="3" v-model="question3.answer">
-      <label v-if="question3.answer != '3'">Properly wearing a well-fitting face mask.</label>
-      <b v-if="question3.answer == '3'">Properly wearing a well-fitting face mask.</b></p>
-    <p><input type="radio" value="4" v-model="question3.answer">
-      Never washing your hands.</p>
-  
-    <p v-if="question3.answer == '0'"></p>
-    <p v-if="question3.answer == '1'" class="false">Nope. During a large gathering, many more meetings between individuals will take place, and each meeting is another opportunity for infection.</p>
-    <p v-if="question3.answer == '2'" class="false">I wish.  But unless it's a particularly ghastly shade of yellow that drives everyone away from you, your fashion choices won't make any difference.</p>
-    <p v-if="question3.answer == '3'" class="true">Yes! A good face mask will reduce the chance of infection during a meeting.</p>
-    <p v-if="question3.answer == '4'" class="false">Yikes! That seems like a great way to increase the spread!</p>
-</div>
+
+<mcq label="Exercise 3" palette="coronavirus" :images="[`./images/corona-exercise3.png`]" :choices="[
+    {
+      correct: false,
+      answer: `Having a big birthday party at home with lots of guests.`,
+      response: `Nope. During a large gathering, many more meetings between individuals will take place, and each meeting is another opportunity for infection.`
+    },
+    {
+      correct: false,
+      answer: `Wearing yellow clothing.`,
+      response: `I wish.  But unless it's a particularly ghastly shade of yellow that drives everyone away from you, your fashion choices won't make any difference.`
+    },
+    {
+      correct: true,
+      answer: `Properly wearing a well-fitting face mask.`,
+      response: `Yes! A good face mask will reduce the chance of infection during a meeting.`
+    },
+    {
+      correct: false,
+      answer: `Never washing your hands.`,
+      response: `Yikes! That seems like a great way to increase the spread!`
+    }
+  ]">
+</mcq>
+
 
 
 
@@ -152,54 +165,55 @@ Unbelievable! The Coronavirus is actually answering our video call.  Okay, here 
 </div>
 
 
-
-<div class="exercise-box2">
-  <h4>Exercise 4</h4>
-    <img src="./images/corona-exercise4.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question4.answer">
-      1</p>
-    <p><input type="radio" value="2" v-model="question4.answer">
-      2</p>
-    <p><input type="radio" value="3" v-model="question4.answer">
-      4</p>
-    <p><input type="radio" value="4" v-model="question4.answer">
-      <label v-if="question4.answer != '4'">8</label>
-      <b v-if="question4.answer == '4'">8</b></p>
-  
-    <p v-if="question4.answer == '0'"></p>
-    <p v-if="question4.answer == '1'" class="false">Nope, R-nought will increase, not decrease!</p>
-    <p v-if="question4.answer == '2'" class="false">Nope, R-nought will increase, not stay the same!</p>
-    <p v-if="question4.answer == '3'" class="false">No, R-nought will increase even more!</p>
-    <p v-if="question4.answer == '4'" class="true">That's correct!  R-nought will also quadruple, since it
-    is a multiple of the chance of infection.</p>
-</div>
-
-
-
-<div class="exercise-box2">
-  <h4>Exercise 5</h4>
-    <img src="./images/corona-exercise5.png" class="shrinkToFit" width="90%">
-<br>
-    <p><input type="radio" value="1" v-model="question5.answer">
-      A: Getting everybody to meet half as many people per day, on average.</p>
-    <p><input type="radio" value="2" v-model="question5.answer">
-     B: Using face masks to reduce the chance of infection in a given interaction by 50%.</p>
-    <p><input type="radio" value="3" v-model="question5.answer">
-      <label v-if="question5.answer != '3'">C: Doing both A and B.</label>
-      <b v-if="question5.answer == '3'">C: Doing both A and B.</b></p>
-    <p><input type="radio" value="4" v-model="question5.answer">
-      D: None of the above.</p>
-  
-    <p v-if="question5.answer == '0'"></p>
-    <p v-if="question5.answer == '1'" class="false">Almost!  That will cut R-nought in half, making it 1.5.  So not quite good enough!</p>
-    <p v-if="question5.answer == '2'" class="false">Getting there!  This will cut R-nought in half, making it 1.5.  So not quite good enough!</p>
-    <p v-if="question5.answer == '3'" class="true">Yes! Doing both A and B will multiply R-nought by 0.25, reducing it to 0.75, which is less than 1.</p>
-    <p v-if="question5.answer == '4'" class="false">Hmmm, really? Look more carefully. There is a way to bring R-nought below 1.</p>
-</div>
+<mcq label="Exercise 4" palette="coronavirus" :images="[`./images/corona-exercise4.png`]" :choices="[
+    {
+      correct: false,
+      answer: `1`,
+      response: `Nope, R-nought will increase, not decrease!`
+    },
+    {
+      correct: false,
+      answer: `2`,
+      response: `Nope, R-nought will increase, not stay the same!`
+    },
+    {
+      correct: false,
+      answer: `4`,
+      response: `No, R-nought will increase even more!`
+    },
+    {
+      correct: true,
+      answer: `8`,
+      response: `That's correct!  R-nought will also quadruple, since it
+    is a multiple of the chance of infection.`
+    }
+  ]">
+</mcq>
 
 
-
+<mcq label="Exercise 5" palette="coronavirus" :images="[`./images/corona-exercise5.png`]" :choices="[
+    {
+      correct: false,
+      answer: `A: Getting everybody to meet half as many people per day, on average.`,
+      response: `Almost!  That will cut R-nought in half, making it 1.5.  So not quite good enough!`
+    },
+    {
+      correct: false,
+      answer: `B: Using face masks to reduce the chance of infection in a given interaction by 50%.`,
+      response: `Getting there!  This will cut R-nought in half, making it 1.5.  So not quite good enough!`
+    },
+    {
+      correct: true,
+      answer: `C: Doing both A and B.`,
+      response: `Yes! Doing both A and B will multiply R-nought by 0.25, reducing it to 0.75, which is less than 1.`
+    },
+    {
+      correct: false,
+      answer: `D: None of the above.`,
+      response: `Hmmm, really? Look more carefully. There is a way to bring R-nought below 1.`
+    }
+  ]">
+</mcq>
 
 
 <md>This Coronavirus is turning out to be a great ally!  We got all the information we needed.
@@ -220,26 +234,6 @@ let data = {
 
   aside1: {
     expand: false
-  },
-
-  question1: {
-    answer: 0
-  },
-
-  question2: {
-    answer: 0
-  },
-
-  question3: {
-    answer: 0
-  },
-
-  question4: {
-    answer: 0
-  },
-
-  question5: {
-    answer: 0
   },
 };
 </script>
